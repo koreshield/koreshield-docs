@@ -35,10 +35,10 @@ const config: Config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/orgs/koreshield/koreshield-docs',
+          editUrl: 'https://github.com/koreshield/koreshield-docs/edit/main/',
           breadcrumbs: true,
-          showLastUpdateAuthor: true,
-          showLastUpdateTime: true,
+          showLastUpdateAuthor: false,
+          showLastUpdateTime: false,
         },
         blog: {
           showReadingTime: true,
@@ -46,7 +46,7 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          editUrl: 'https://github.com/orgs/koreshield/koreshield-docs',
+          editUrl: 'https://github.com/koreshield/koreshield-docs/edit/main/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -100,7 +100,7 @@ const config: Config = {
         {
           to: '/getting-started/quick-start',
           label: 'Getting Started',
-          position: 'right',
+          position: 'left',
           className: 'nav-link_getting-started',
         },
         {
@@ -111,7 +111,7 @@ const config: Config = {
         {
           to: '/api/',
           label: 'API Reference',
-          position: 'left',
+          position: 'right',
         },
         {
           href: 'https://github.com/koreshield/koreshield',
