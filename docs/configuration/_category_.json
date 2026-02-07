@@ -1,0 +1,9 @@
+{
+  "label": "Configuration",
+  "position": 5,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "description": "Configure KoreShield to match your security requirements and deployment environment."
+  }
+}

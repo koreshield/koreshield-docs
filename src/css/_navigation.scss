@@ -1,0 +1,78 @@
+/* Navigation Bar Styles */
+.navbar {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  
+  &__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  &__title {
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+  
+  &__item {
+    &--search {
+      .DocSearch-Button {
+        border-radius: 6px;
+        background-color: var(--bg-tertiary);
+        
+        &:hover {
+          background-color: var(--color-gray-16);
+          box-shadow: none;
+        }
+      }
+    }
+  }
+  
+  &__link {
+    font-weight: 500;
+    transition: color 0.2s ease;
+    
+    &:hover {
+      color: var(--ifm-color-primary);
+      text-decoration: none;
+    }
+    
+    &--active {
+      color: var(--ifm-color-primary);
+      font-weight: 600;
+    }
+  }
+}
+
+/* Navbar dropdown */
+.navbar__dropdown {
+  .dropdown__menu {
+    border-radius: 8px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    padding: 0.5rem;
+    
+    .dropdown__link {
+      border-radius: 4px;
+      padding: 0.5rem 0.75rem;
+      
+      &:hover {
+        background-color: var(--bg-tertiary);
+      }
+      
+      &--active {
+        background-color: var(--ifm-color-primary-lightest);
+        color: var(--ifm-color-primary-darkest);
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+[data-theme='dark'] {
+  .navbar {
+    box-shadow: 0 1px 3px 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  .navbar__dropdown .dropdown__menu .dropdown__link--active {
+    background-color: var(--ifm-color-primary-darkest);
+    color: var(--ifm-color-primary-lightest);
+  }
+}

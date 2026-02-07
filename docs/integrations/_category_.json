@@ -1,0 +1,9 @@
+{
+  "label": "Integrations",
+  "position": 2,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn how to integrate KoreShield with popular frameworks, platforms, and deployment options."
+  }
+}
