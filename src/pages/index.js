@@ -1,42 +1,33 @@
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Heading from '@theme/Heading';
-import Layout from '@theme/Layout';
-import clsx from 'clsx';
-import type { ReactNode } from 'react';
-
-import styles from './index.module.css';
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = Home;
+var Link_1 = require("@docusaurus/Link");
+var useDocusaurusContext_1 = require("@docusaurus/useDocusaurusContext");
+var Heading_1 = require("@theme/Heading");
+var Layout_1 = require("@theme/Layout");
+var clsx_1 = require("clsx");
+var index_module_css_1 = require("./index.module.css");
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    <header className={clsx('hero', styles.heroBanner)}>
+    var siteConfig = (0, useDocusaurusContext_1.default)().siteConfig;
+    return (<header className={(0, clsx_1.default)('hero', index_module_css_1.default.heroBanner)}>
       <div className="container">
-        <Heading as="h1" className="hero__title">
+        <Heading_1.default as="h1" className="hero__title">
           {siteConfig.title}
-        </Heading>
+        </Heading_1.default>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--primary button--lg"
-            to="/getting-started/quick-start"
-            style={{ marginRight: '1rem' }}>
+        <div className={index_module_css_1.default.buttons}>
+          <Link_1.default className="button button--primary button--lg" to="/getting-started/quick-start" style={{ marginRight: '1rem' }}>
             Get Started →
-          </Link>
-          <Link
-            className="button button--secondary button--lg"
-            to="/api/">
+          </Link_1.default>
+          <Link_1.default className="button button--secondary button--lg" to="/api/">
             View API Docs
-          </Link>
+          </Link_1.default>
         </div>
       </div>
-    </header>
-  );
+    </header>);
 }
-
 function FeatureSection() {
-  return (
-    <section className={styles.features}>
+    return (<section className={index_module_css_1.default.features}>
       <div className="container">
         <div className="row">
           <div className="col col--4">
@@ -68,49 +59,34 @@ function FeatureSection() {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
 }
-
 function QuickStartSection() {
-  return (
-    <section className={styles.quickstart}>
+    return (<section className={index_module_css_1.default.quickstart}>
       <div className="container">
         <div className="row">
           <div className="col col--6">
             <h2>Start Securing Your AI in Minutes</h2>
             <p>Deploy KoreShield as a standalone proxy or integrate our SDK directly into your application.</p>
             <div style={{ marginTop: '2rem' }}>
-              <Link
-                className="button button--primary button--lg"
-                to="/getting-started/installation">
+              <Link_1.default className="button button--primary button--lg" to="/getting-started/installation">
                 Installation Guide →
-              </Link>
+              </Link_1.default>
             </div>
           </div>
           <div className="col col--6">
-            <div className={styles.codeExample}>
+            <div className={index_module_css_1.default.codeExample}>
               <pre>
-                <code>{`# Deploy with Docker
-docker run -p 8000:8000 \\
-  -e OPENAI_API_KEY=sk-... \\
-  koreshield/koreshield
-
-# Or install the SDK
-pip install koreshield
-npm install koreshield`}</code>
+                <code>{"# Deploy with Docker\ndocker run -p 8000:8000 \\\n  -e OPENAI_API_KEY=sk-... \\\n  koreshield/koreshield\n\n# Or install the SDK\npip install koreshield\nnpm install koreshield"}</code>
               </pre>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
 }
-
 function UseCasesSection() {
-  return (
-    <section className={styles.usecases}>
+    return (<section className={index_module_css_1.default.usecases}>
       <div className="container">
         <h2 className="text--center" style={{ marginBottom: '3rem' }}>Built for Modern AI Applications</h2>
         <div className="row">
@@ -154,22 +130,16 @@ function UseCasesSection() {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
 }
-
-export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    <Layout
-      title={`${siteConfig.title} Documentation`}
-      description="Open-source security platform protecting LLM applications from prompt injection attacks">
+function Home() {
+    var siteConfig = (0, useDocusaurusContext_1.default)().siteConfig;
+    return (<Layout_1.default title={"".concat(siteConfig.title, " Documentation")} description="Open-source security platform protecting LLM applications from prompt injection attacks">
       <HomepageHeader />
       <main>
         <FeatureSection />
         <QuickStartSection />
         <UseCasesSection />
       </main>
-    </Layout>
-  );
+    </Layout_1.default>);
 }

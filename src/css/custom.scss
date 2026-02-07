@@ -76,7 +76,7 @@ pre code,
 }
 
 /* Hero banner dark mode */
-[data-theme='dark'] .heroBanner {
+[data-theme='dark'] [class*='heroBanner'] {
   background: linear-gradient(135deg, #020617 0%, #0e7490 100%) !important;
 }
 
