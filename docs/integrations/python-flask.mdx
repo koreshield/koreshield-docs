@@ -1,32 +1,32 @@
 ---
 title: Flask
-description: Integrate KoreShield with Flask applications
+description: Integrate Koreshield with Flask applications
 icon: FileText
 ---
 
 # Flask Integration Guide
 
-Protect your **Flask** applications from LLM attacks using KoreShield decorators or wrappers.
+Protect your **Flask** applications from LLM attacks using Koreshield decorators or wrappers.
 
 ## Setup
 
 Install the package:
 
 ```bash
-pip install koreshield flask
+pip install Koreshield flask
 ```
 
 ## Usage
 
-The most idiomatic way to use KoreShield in Flask is via a **decorator**.
+The most idiomatic way to use Koreshield in Flask is via a **decorator**.
 
 ```python
 from flask import Flask, request, abort
-from koreshield.client import KoreShieldClient
+from Koreshield.client import KoreshieldClient
 from functools import wraps
 
 app = Flask(__name__)
-client = KoreShieldClient()
+client = KoreshieldClient()
 
 def guard_route(f):
     @wraps(f)

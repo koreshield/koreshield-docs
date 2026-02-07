@@ -1,25 +1,25 @@
 ---
 title: Kubernetes Deployment
-description: Deploy and scale KoreShield on Kubernetes with Helm charts
+description: Deploy and scale Koreshield on Kubernetes with Helm charts
 published: true
 ---
 
 # Kubernetes Deployment
 
-Deploy KoreShield on Kubernetes for production-grade scalability and reliability.
+Deploy Koreshield on Kubernetes for production-grade scalability and reliability.
 
 ## Quick Start with Helm
 
 ```bash
 # Add Helm repository
-helm repo add koreshield https://charts.koreshield.com
+helm repo add Koreshield https://charts.Koreshield.com
 helm repo update
 
-# Install KoreShield
-helm install koreshield koreshield/koreshield \
+# Install Koreshield
+helm install Koreshield Koreshield/Koreshield \
   --set apiKey=ks_prod_xxxxxxxxxxxx \
   --set ingress.enabled=true \
-  --set ingress.host=koreshield.yourdomain.com
+  --set ingress.host=Koreshield.yourdomain.com
 ```
 
 ## Manual Deployment
@@ -31,7 +31,7 @@ helm install koreshield koreshield/koreshield \
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: koreshield
+  name: Koreshield
 ```
 
 ### ConfigMap
@@ -41,8 +41,8 @@ metadata:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: koreshield-config
-  namespace: koreshield
+  name: Koreshield-config
+  namespace: Koreshield
 data:
   config.yaml: |
     sensitivity: medium
@@ -57,12 +57,12 @@ data:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: koreshield-secrets
-  namespace: koreshield
+  name: Koreshield-secrets
+  namespace: Koreshield
 type: Opaque
 stringData:
   api-key: ks_prod_xxxxxxxxxxxx
-  database-url: postgresql://user:pass@postgres:5432/koreshield
+  database-url: postgresql://user:pass@postgres:5432/Koreshield
   redis-url: redis://redis:6379
 ```
 
@@ -73,42 +73,42 @@ stringData:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: koreshield
-  namespace: koreshield
+  name: Koreshield
+  namespace: Koreshield
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: koreshield
+      app: Koreshield
   template:
     metadata:
       labels:
-        app: koreshield
+        app: Koreshield
         version: v2.0.0
     spec:
       containers:
-      - name: koreshield
-        image: koreshield/koreshield:2.0.0
+      - name: Koreshield
+        image: Koreshield/Koreshield:2.0.0
         ports:
         - containerPort: 8080
           name: http
         - containerPort: 9090
           name: metrics
         env:
-        - name: KORESHIELD_API_KEY
+        - name: Koreshield_API_KEY
           valueFrom:
             secretKeyRef:
-              name: koreshield-secrets
+              name: Koreshield-secrets
               key: api-key
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
-              name: koreshield-secrets
+              name: Koreshield-secrets
               key: database-url
         - name: REDIS_URL
           valueFrom:
             secretKeyRef:
-              name: koreshield-secrets
+              name: Koreshield-secrets
               key: redis-url
         resources:
           requests:
@@ -136,7 +136,7 @@ spec:
       volumes:
       - name: config
         configMap:
-          name: koreshield-config
+          name: Koreshield-config
 ```
 
 ### Service
@@ -146,10 +146,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: koreshield
-  namespace: koreshield
+  name: Koreshield
+  namespace: Koreshield
   labels:
-    app: koreshield
+    app: Koreshield
 spec:
   type: ClusterIP
   ports:
@@ -162,7 +162,7 @@ spec:
     protocol: TCP
     name: metrics
   selector:
-    app: koreshield
+    app: Koreshield
 ```
 
 ### Ingress
@@ -172,8 +172,8 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: koreshield
-  namespace: koreshield
+  name: Koreshield
+  namespace: Koreshield
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/rate-limit: "100"
@@ -181,17 +181,17 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - koreshield.yourdomain.com
-    secretName: koreshield-tls
+    - Koreshield.yourdomain.com
+    secretName: Koreshield-tls
   rules:
-  - host: koreshield.yourdomain.com
+  - host: Koreshield.yourdomain.com
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: koreshield
+            name: Koreshield
             port:
               number: 80
 ```
@@ -203,7 +203,7 @@ spec:
 replicaCount: 3
 
 image:
-  repository: koreshield/koreshield
+  repository: Koreshield/Koreshield
   tag: "2.0.0"
   pullPolicy: IfNotPresent
 
@@ -216,10 +216,10 @@ service:
 ingress:
   enabled: true
   className: nginx
-  host: koreshield.yourdomain.com
+  host: Koreshield.yourdomain.com
   tls:
     enabled: true
-    secretName: koreshield-tls
+    secretName: Koreshield-tls
 
 resources:
   requests:
@@ -239,8 +239,8 @@ autoscaling:
 postgresql:
   enabled: true
   auth:
-    database: koreshield
-    username: koreshield
+    database: Koreshield
+    username: Koreshield
 
 redis:
   enabled: true
@@ -261,13 +261,13 @@ prometheus:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: koreshield
-  namespace: koreshield
+  name: Koreshield
+  namespace: Koreshield
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: koreshield
+    name: Koreshield
   minReplicas: 3
   maxReplicas: 10
   metrics:
@@ -292,13 +292,13 @@ spec:
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
 metadata:
-  name: koreshield
-  namespace: koreshield
+  name: Koreshield
+  namespace: Koreshield
 spec:
   targetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: koreshield
+    name: Koreshield
   updatePolicy:
     updateMode: "Auto"
 ```
@@ -312,12 +312,12 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: koreshield
-  namespace: koreshield
+  name: Koreshield
+  namespace: Koreshield
 spec:
   selector:
     matchLabels:
-      app: koreshield
+      app: Koreshield
   endpoints:
   - port: metrics
     interval: 30s
@@ -332,8 +332,8 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: koreshield-data
-  namespace: koreshield
+  name: Koreshield-data
+  namespace: Koreshield
 spec:
   accessModes:
     - ReadWriteOnce
@@ -352,12 +352,12 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: koreshield
-  namespace: koreshield
+  name: Koreshield
+  namespace: Koreshield
 spec:
   podSelector:
     matchLabels:
-      app: koreshield
+      app: Koreshield
   policyTypes:
   - Ingress
   - Egress
@@ -393,7 +393,7 @@ spec:
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
-  name: koreshield
+  name: Koreshield
 spec:
   privileged: false
   allowPrivilegeEscalation: false
@@ -419,7 +419,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: koreshield-us-east
+  name: Koreshield-us-east
 spec:
   replicas: 3
   template:
@@ -440,7 +440,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: koreshield-eu-west
+  name: Koreshield-eu-west
 spec:
   replicas: 3
   template:
@@ -481,18 +481,18 @@ kubectl apply -f service.yaml
 kubectl apply -f ingress.yaml
 
 # Check status
-kubectl get pods -n koreshield
-kubectl get svc -n koreshield
-kubectl logs -f deployment/koreshield -n koreshield
+kubectl get pods -n Koreshield
+kubectl get svc -n Koreshield
+kubectl logs -f deployment/Koreshield -n Koreshield
 
 # Scale
-kubectl scale deployment koreshield --replicas=5 -n koreshield
+kubectl scale deployment Koreshield --replicas=5 -n Koreshield
 
 # Update
-kubectl set image deployment/koreshield koreshield=koreshield/koreshield:2.1.0 -n koreshield
+kubectl set image deployment/Koreshield Koreshield=Koreshield/Koreshield:2.1.0 -n Koreshield
 
 # Delete
-kubectl delete namespace koreshield
+kubectl delete namespace Koreshield
 ```
 
 ## Related Documentation

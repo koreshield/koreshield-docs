@@ -1,6 +1,6 @@
 ---
 title: Installation
-description: How to install KoreShield
+description: How to install Koreshield
 icon: Terminal
 sidebar_position: 2
 slug: /getting-started/installation
@@ -8,31 +8,31 @@ slug: /getting-started/installation
 
 # Installation
 
-KoreShield can be used in two ways: as a **standalone proxy** (recommended for production) or as an **SDK** integrated directly into your application code.
+Koreshield can be used in two ways: as a **standalone proxy** (recommended for production) or as an **SDK** integrated directly into your application code.
 
 ## 1. Proxy Installation (Docker)
 
 The standalone proxy sits between your application and LLM providers. This is the **most secure** deployment method as it operates independently of your application logic.
 
 ```bash
-docker pull koreshield/koreshield
-docker run -p 8000:8000 koreshield/koreshield
+docker pull Koreshield/Koreshield
+docker run -p 8000:8000 Koreshield/Koreshield
 ```
 
 ## 2. SDK Installation
 
-The SDKs allow you to integrate KoreShield features (sanitization, scanning) directly into your codebase or interact with a deployed KoreShield Proxy.
+The SDKs allow you to integrate Koreshield features (sanitization, scanning) directly into your codebase or interact with a deployed Koreshield Proxy.
 
 ### Python SDK
 
 ```bash
-pip install koreshield
+pip install Koreshield
 ```
 
 ### JavaScript/TypeScript SDK
 
 ```bash
-npm install koreshield
+npm install Koreshield
 ```
 
 ## Verification
@@ -40,7 +40,7 @@ npm install koreshield
 To verify that the **Python SDK** has been installed successfully:
 
 ```bash
-python -c "import koreshield; print(koreshield.__version__)"
+python -c "import Koreshield; print(Koreshield.__version__)"
 ```
 
 ## System Requirements (Proxy)

@@ -1,12 +1,12 @@
 ---
 title: Financial Services Security
-description: How KoreShield protects financial institutions from LLM security threats
+description: How Koreshield protects financial institutions from LLM security threats
 published: true
 ---
 
 # Financial Services Security
 
-Learn how financial institutions use KoreShield to secure AI-powered customer service, fraud detection, and compliance systems.
+Learn how financial institutions use Koreshield to secure AI-powered customer service, fraud detection, and compliance systems.
 
 ## Challenge
 
@@ -25,14 +25,14 @@ A global investment bank deployed an AI chatbot to help customers with account i
 
 ## Solution
 
-KoreShield was deployed as a security layer for all LLM interactions:
+Koreshield was deployed as a security layer for all LLM interactions:
 
 ```typescript
-import { KoreShield } from 'koreshield-sdk';
+import { Koreshield } from 'Koreshield-sdk';
 import OpenAI from 'openai';
 
-const koreshield = new KoreShield({
-  apiKey: process.env.KORESHIELD_API_KEY,
+const Koreshield = new Koreshield({
+  apiKey: process.env.Koreshield_API_KEY,
   sensitivity: 'high', // Financial data requires high sensitivity
 });
 
@@ -44,7 +44,7 @@ async function secureFinancialChat(
   accountContext: AccountInfo
 ) {
   // Scan user message
-  const scan = await koreshield.scan({
+  const scan = await Koreshield.scan({
     content: message,
     userId,
     metadata: {
@@ -113,7 +113,7 @@ STRICT RULES:
        │
        ▼
 ┌─────────────────────┐
-│  KoreShield Scan    │◄──── Threat Detection
+│  Koreshield Scan    │◄──── Threat Detection
 └──────┬──────────────┘
        │ (if safe)
        ▼
@@ -147,7 +147,7 @@ async function tenantSecureChat(
 ) {
   const config = await getTenantConfig(tenantId);
 
-  const scan = await koreshield.scan({
+  const scan = await Koreshield.scan({
     content: message,
     userId,
     sensitivity: config.sensitivity,
@@ -181,7 +181,7 @@ function maskSensitiveData(message: string): string {
 
 async function pciCompliantScan(message: string, userId: string) {
   // Scan unmasked for threat detection
-  const scan = await koreshield.scan({
+  const scan = await Koreshield.scan({
     content: message,
     userId,
   });
@@ -206,7 +206,7 @@ async function authorizeTransaction(
   instruction: string
 ) {
   // Scan instruction for manipulation
-  const scan = await koreshield.scan({
+  const scan = await Koreshield.scan({
     content: instruction,
     userId,
     metadata: { operation: 'transaction' },
@@ -304,8 +304,8 @@ async function multiLayerSecurity(userId: string, message: string) {
   // Layer 2: Input validation
   validateInput(message);
 
-  // Layer 3: KoreShield scan
-  const scan = await koreshield.scan({ content: message, userId });
+  // Layer 3: Koreshield scan
+  const scan = await Koreshield.scan({ content: message, userId });
 
   if (scan.threat_detected) {
     throw new SecurityError('Threat detected');

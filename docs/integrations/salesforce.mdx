@@ -7,7 +7,7 @@ description: Secure your Salesforce Einstein bots and RAG pipelines against prom
 
 Salesforce is a prime target for RAG attacks because it aggregates external data (emails, cases) that is often fed directly into LLMs (Einstein Copilot).
 
-KoreShield provides a specialized template for Salesforce that maps standard objects to our threat taxonomy.
+Koreshield provides a specialized template for Salesforce that maps standard objects to our threat taxonomy.
 
 ## Supported Objects
 
@@ -25,24 +25,24 @@ We recommend using a Python middleware (e.g., in AWS Lambda or Heroku) to scan d
 ### Prerequisites
 
 1.  Export your Salesforce credentials.
-2.  Install `koreshield` and `simple-salesforce`.
+2.  Install `Koreshield` and `simple-salesforce`.
 
 ### Code Example
 
 ```python
 from simple_salesforce import Salesforce
-from koreshield import AsyncKoreShieldClient
-from koreshield.crm_templates.salesforce import SALESFORCE_TEMPLATE
+from Koreshield import AsyncKoreshieldClient
+from Koreshield.crm_templates.salesforce import SALESFORCE_TEMPLATE
 
 # 1. Connect
 sf = Salesforce(username='...', password='...', security_token='...')
-ks_client = AsyncKoreShieldClient(api_key="ks_...")
+ks_client = AsyncKoreshieldClient(api_key="ks_...")
 
 # 2. Fetch recent emails (potential vector)
 query = "SELECT Subject, TextBody FROM EmailMessage ORDER BY CreatedDate DESC LIMIT 5"
 emails = sf.query(query)['records']
 
-# 3. Format for KoreShield
+# 3. Format for Koreshield
 documents = []
 for email in emails:
     documents.append({

@@ -1,6 +1,6 @@
 ---
 title: Healthcare AI Security
-description: HIPAA-compliant AI assistant deployment with KoreShield
+description: HIPAA-compliant AI assistant deployment with Koreshield
 published: true
 ---
 
@@ -25,11 +25,11 @@ A hospital network deployed an AI assistant to help doctors with:
 ## Solution
 
 ```typescript
-import { KoreShield } from 'koreshield-sdk';
+import { Koreshield } from 'Koreshield-sdk';
 import OpenAI from 'openai';
 
-const koreshield = new KoreShield({
-  apiKey: process.env.KORESHIELD_API_KEY,
+const Koreshield = new Koreshield({
+  apiKey: process.env.Koreshield_API_KEY,
   sensitivity: 'high',
   complianceMode: 'hipaa',
 });
@@ -40,7 +40,7 @@ async function secureMedicalQuery(
   query: string
 ) {
   // Scan query for prompt injection
-  const scan = await koreshield.scan({
+  const scan = await Koreshield.scan({
     content: query,
     userId: doctorId,
     metadata: {

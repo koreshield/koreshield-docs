@@ -1,17 +1,17 @@
 ---
 title: Django
-description: Integrate KoreShield with Django applications
+description: Integrate Koreshield with Django applications
 icon: Box
 ---
 
 # Django Integration Guide
 
-KoreShield can protect **Django** applications using middleware to intercept and inspect requests before they reach your views.
+Koreshield can protect **Django** applications using middleware to intercept and inspect requests before they reach your views.
 
 ## Installation
 
 ```bash
-pip install koreshield django
+pip install Koreshield django
 ```
 
 ## Middleware Setup
@@ -23,15 +23,15 @@ import asyncio
 import json
 from django.http import JsonResponse
 from django.conf import settings
-from koreshield.client import KoreShieldClient
+from Koreshield.client import KoreshieldClient
 
-class KoreShieldMiddleware:
+class KoreshieldMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
-        self.client = KoreShieldClient(
-            base_url=getattr(settings, "KORESHIELD_URL", "http://localhost:8000")
+        self.client = KoreshieldClient(
+            base_url=getattr(settings, "Koreshield_URL", "http://localhost:8000")
         )
-        self.protected_paths = getattr(settings, "KORESHIELD_PROTECTED_PATHS", [])
+        self.protected_paths = getattr(settings, "Koreshield_PROTECTED_PATHS", [])
 
     def __call__(self, request):
         if request.path in self.protected_paths and request.method == "POST":
@@ -46,7 +46,7 @@ class KoreShieldMiddleware:
                     
                     if not is_safe["is_safe"]:
                         return JsonResponse({
-                            "error": "Blocked by KoreShield", 
+                            "error": "Blocked by Koreshield", 
                             "reason": is_safe["reason"]
                         }, status=403)
             except Exception:
@@ -66,13 +66,13 @@ In your `settings.py`:
 ```python
 MIDDLEWARE = [
     # ...
-    'yourapp.middleware.KoreShieldMiddleware',
+    'yourapp.middleware.KoreshieldMiddleware',
 ]
 
-KORESHIELD_URL = "http://localhost:8000"
-KORESHIELD_PROTECTED_PATHS = ["/api/v1/chat", "/api/v1/generate"]
+Koreshield_URL = "http://localhost:8000"
+Koreshield_PROTECTED_PATHS = ["/api/v1/chat", "/api/v1/generate"]
 ```
 
 ## Notes
 - For high-performance async Django (Generic Async Views), use `__acall__` instead of `__call__`.
-- Ensure `KoreShieldProxy` is reachable from your Django backend.
+- Ensure `KoreshieldProxy` is reachable from your Django backend.

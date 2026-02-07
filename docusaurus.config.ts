@@ -4,19 +4,19 @@ import { themes as prismThemes } from 'prism-react-renderer';
 
 const config: Config = {
   // === SITE METADATA ===
-  title: 'KoreShield',
+  title: 'Koreshield',
   tagline: 'Open-source security platform protecting LLM applications from prompt injection attacks',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
 
   future: {
     v4: true,
   },
 
   // === DEPLOYMENT ===
-  url: 'https://docs.koreshield.com',
+  url: 'https://docs.Koreshield.com',
   baseUrl: '/',
-  organizationName: 'koreshield',
-  projectName: 'koreshield',
+  organizationName: 'Koreshield',
+  projectName: 'Koreshield',
 
 
   onBrokenLinks: 'throw',
@@ -35,7 +35,7 @@ const config: Config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/koreshield/koreshield-docs/edit/main/',
+          editUrl: 'https://github.com/Koreshield/Koreshield-docs/edit/main/',
           breadcrumbs: true,
           showLastUpdateAuthor: false,
           showLastUpdateTime: false,
@@ -46,7 +46,7 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          editUrl: 'https://github.com/koreshield/koreshield-docs/edit/main/',
+          editUrl: 'https://github.com/Koreshield/Koreshield-docs/edit/main/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -64,7 +64,7 @@ const config: Config = {
 
   // === THEME CONFIGURATION ===
   themeConfig: {
-    image: 'img/koreshield-social-card.jpg',
+    image: 'img/Koreshield-social-card.jpg',
     colorMode: {
       defaultMode: 'light',
       disableSwitch: false,
@@ -79,21 +79,21 @@ const config: Config = {
     // === NAVIGATION BAR ===
     navbar: {
       hideOnScroll: false,
-      title: 'KoreShield',
+      title: 'Koreshield',
       logo: {
-        alt: 'KoreShield Logo',
+        alt: 'Koreshield Logo',
         src: 'img/Black.svg',
         srcDark: 'img/White.svg',
-        href: 'https://koreshield.com/',
+        href: 'https://Koreshield.com/',
       },
       items: [
         {
-          to: 'https://koreshield.com/',
+          to: 'https://Koreshield.com/',
           position: 'left',
           label: 'Product',
         },
         {
-          to: 'https://blog.koreshield.com/',
+          to: 'https://blog.Koreshield.com/',
           label: 'Blog',
           position: 'left',
         },
@@ -114,12 +114,12 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/koreshield/koreshield',
+          href: 'https://github.com/Koreshield/Koreshield',
           label: 'GitHub',
           position: 'right',
         },
         {
-          href: 'https://discord.gg/koreshield',
+          href: 'https://discord.gg/Koreshield',
           label: 'Community',
           position: 'right',
         },
@@ -159,11 +159,11 @@ const config: Config = {
             },
             {
               label: 'Python SDK',
-              href: 'https://github.com/koreshield/koreshield/tree/main/koreshield-python-sdk',
+              href: 'https://github.com/Koreshield/Koreshield/tree/main/Koreshield-python-sdk',
             },
             {
               label: 'JavaScript SDK',
-              href: 'https://github.com/koreshield/koreshield/tree/main/koreshield-js-sdk',
+              href: 'https://github.com/Koreshield/Koreshield/tree/main/Koreshield-js-sdk',
             },
             {
               label: 'Integrations',
@@ -176,19 +176,19 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/koreshield/koreshield',
+              href: 'https://github.com/Koreshield/Koreshield',
             },
             {
               label: 'Discord',
-              href: 'https://discord.gg/koreshield',
+              href: 'https://discord.gg/Koreshield',
             },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/koreshield',
+              href: 'https://twitter.com/Koreshield',
             },
             {
               label: 'Contributing',
-              href: 'https://github.com/koreshield/koreshield/blob/main/',
+              href: 'https://github.com/Koreshield/Koreshield/blob/main/',
             },
           ],
         },
@@ -201,20 +201,20 @@ const config: Config = {
             },
             {
               label: 'Security',
-              href: 'https://github.com/koreshield/koreshield/blob/main/SECURITY.md',
+              href: 'https://github.com/Koreshield/Koreshield/blob/main/SECURITY.md',
             },
             {
               label: 'License',
-              href: 'https://github.com/koreshield/koreshield/blob/main/LICENSE',
+              href: 'https://github.com/Koreshield/Koreshield/blob/main/LICENSE',
             },
             {
               label: 'Support',
-              href: 'mailto:support@koreshield.com',
+              href: 'mailto:support@Koreshield.com',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} KoreShield. Open source under MIT License.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Koreshield. Open source under MIT License.`,
     },
     // === CODE HIGHLIGHTING ===
     prism: {

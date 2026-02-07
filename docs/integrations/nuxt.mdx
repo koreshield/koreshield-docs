@@ -1,35 +1,35 @@
 ---
 title: Nuxt.js Integration  
-description: Integrate KoreShield into your Nuxt 3 applications for full-stack LLM security
+description: Integrate Koreshield into your Nuxt 3 applications for full-stack LLM security
 published: true
 ---
 
 # Nuxt.js Integration
 
-Add LLM security to your Nuxt 3 applications with KoreShield on both server and client sides.
+Add LLM security to your Nuxt 3 applications with Koreshield on both server and client sides.
 
 ## Installation
 
 ```bash
-npm install @koreshield/node-sdk
+npm install @Koreshield/node-sdk
 # or
-yarn add @koreshield/node-sdk
+yarn add @Koreshield/node-sdk
 # or
-pnpm add @koreshield/node-sdk
+pnpm add @Koreshield/node-sdk
 ```
 
 ## Server-Side Protection
 
 ### API Route Protection
 
-Create a Nuxt server API route with KoreShield protection:
+Create a Nuxt server API route with Koreshield protection:
 
 ```typescript
 // server/api/chat.post.ts
-import { KoreShieldClient } from '@koreshield/node-sdk';
+import { KoreshieldClient } from '@Koreshield/node-sdk';
 
-const koreshield = new KoreShieldClient({
-  apiKey: useRuntimeConfig().koreshieldApiKey,
+const Koreshield = new KoreshieldClient({
+  apiKey: useRuntimeConfig().KoreshieldApiKey,
 });
 
 export default defineEventHandler(async (event) => {
@@ -37,7 +37,7 @@ export default defineEventHandler(async (event) => {
   const { message } = body;
   
   // Scan for threats
-  const scanResult = await koreshield.scan(message);
+  const scanResult = await Koreshield.scan(message);
   
   if (scanResult.isThreat) {
     throw createError({
@@ -68,11 +68,11 @@ export default defineEventHandler(async (event) => {
 Create server middleware:
 
 ```typescript
-// server/middleware/koreshield.ts
-import { KoreShieldClient } from '@koreshield/node-sdk';
+// server/middleware/Koreshield.ts
+import { KoreshieldClient } from '@Koreshield/node-sdk';
 
-const koreshield = new KoreShieldClient({
-  apiKey: useRuntimeConfig().koreshieldApiKey,
+const Koreshield = new KoreshieldClient({
+  apiKey: useRuntimeConfig().KoreshieldApiKey,
 });
 
 export default defineEventHandler(async (event) => {
@@ -86,7 +86,7 @@ export default defineEventHandler(async (event) => {
       .map(([_, value]) => value);
     
     for (const text of textFields) {
-      const result = await koreshield.scan(text);
+      const result = await Koreshield.scan(text);
       if (result.isThreat) {
         throw createError({
           statusCode: 403,
@@ -187,12 +187,12 @@ const { message, response, loading, error, sendMessage } = useSecureChat();
 export default defineNuxtConfig({
   runtimeConfig: {
     // Server-only
-    koreshieldApiKey: process.env.KORESHIELD_API_KEY,
-    koreshieldBaseUrl: process.env.KORESHIELD_BASE_URL || 'https://api.koreshield.com',
+    KoreshieldApiKey: process.env.Koreshield_API_KEY,
+    KoreshieldBaseUrl: process.env.Koreshield_BASE_URL || 'https://api.Koreshield.com',
     
     // Public (exposed to client)
     public: {
-      koreshieldEnabled: true,
+      KoreshieldEnabled: true,
     },
   },
 });
@@ -202,8 +202,8 @@ Environment variables:
 
 ```env
 # .env
-KORESHIELD_API_KEY=ks_prod_xxxxxxxxxxxx
-KORESHIELD_BASE_URL=https://api.koreshield.com
+Koreshield_API_KEY=ks_prod_xxxxxxxxxxxx
+Koreshield_BASE_URL=https://api.Koreshield.com
 ```
 
 ## OpenAI Integration
@@ -212,13 +212,13 @@ KORESHIELD_BASE_URL=https://api.koreshield.com
 
 ```typescript
 // server/api/openai/chat.post.ts
-import { KoreShieldClient } from '@koreshield/node-sdk';
+import { KoreshieldClient } from '@Koreshield/node-sdk';
 import OpenAI from 'openai';
 
 const config = useRuntimeConfig();
 
-const koreshield = new KoreShieldClient({
-  apiKey: config.koreshieldApiKey,
+const Koreshield = new KoreshieldClient({
+  apiKey: config.KoreshieldApiKey,
 });
 
 const openai = new OpenAI({
@@ -233,7 +233,7 @@ export default defineEventHandler(async (event) => {
   const userMessages = messages.filter((m: any) => m.role === 'user');
   
   for (const msg of userMessages) {
-    const result = await koreshield.scan(msg.content);
+    const result = await Koreshield.scan(msg.content);
     if (result.isThreat) {
       throw createError({
         statusCode: 403,
@@ -256,18 +256,18 @@ export default defineEventHandler(async (event) => {
 
 ```typescript
 // server/api/stream.post.ts
-import { KoreShieldClient } from '@koreshield/node-sdk';
+import { KoreshieldClient } from '@Koreshield/node-sdk';
 import OpenAI from 'openai';
 
 export default defineEventHandler(async (event) => {
   const { prompt } = await readBody(event);
   
   // Scan prompt first
-  const koreshield = new KoreShieldClient({
-    apiKey: useRuntimeConfig().koreshieldApiKey,
+  const Koreshield = new KoreshieldClient({
+    apiKey: useRuntimeConfig().KoreshieldApiKey,
   });
   
-  const scanResult = await koreshield.scan(prompt);
+  const scanResult = await Koreshield.scan(prompt);
   if (scanResult.isThreat) {
     throw createError({
       statusCode: 403,
@@ -348,28 +348,28 @@ export const useStreamingChat = () => {
 
 ## Server Plugin
 
-Create a global KoreShield instance:
+Create a global Koreshield instance:
 
 ```typescript
-// server/plugins/koreshield.ts
-import { KoreShieldClient } from '@koreshield/node-sdk';
+// server/plugins/Koreshield.ts
+import { KoreshieldClient } from '@Koreshield/node-sdk';
 
 export default defineNitroPlugin((nitroApp) => {
   const config = useRuntimeConfig();
   
-  const koreshield = new KoreShieldClient({
-    apiKey: config.koreshieldApiKey,
-    baseUrl: config.koreshieldBaseUrl,
+  const Koreshield = new KoreshieldClient({
+    apiKey: config.KoreshieldApiKey,
+    baseUrl: config.KoreshieldBaseUrl,
   });
   
   // Make available to all server routes
-  nitroApp.koreshield = koreshield;
+  nitroApp.Koreshield = Koreshield;
 });
 
 // Add type definition
 declare module 'nitropack' {
   interface NitroApp {
-    koreshield: KoreShieldClient;
+    Koreshield: KoreshieldClient;
   }
 }
 ```
@@ -382,7 +382,7 @@ export default defineEventHandler(async (event) => {
   const { message } = await readBody(event);
   
   // Access global instance
-  const result = await event.context.koreshield.scan(message);
+  const result = await event.context.Koreshield.scan(message);
   
   if (result.isThreat) {
     throw createError({ statusCode: 403 });
@@ -438,7 +438,7 @@ describe('Chat API', async () => {
 {
   "buildCommand": "npm run build",
   "env": {
-    "KORESHIELD_API_KEY": "@koreshield-api-key",
+    "Koreshield_API_KEY": "@Koreshield-api-key",
     "OPENAI_API_KEY": "@openai-api-key"
   }
 }
@@ -458,7 +458,7 @@ describe('Chat API', async () => {
   status = 200
 
 [build.environment]
-  KORESHIELD_API_KEY = "YOUR_API_KEY"
+  Koreshield_API_KEY = "YOUR_API_KEY"
 ```
 
 ### Docker
@@ -474,7 +474,7 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-ENV KORESHIELD_API_KEY=""
+ENV Koreshield_API_KEY=""
 ENV OPENAI_API_KEY=""
 
 EXPOSE 3000
@@ -492,7 +492,7 @@ export default defineEventHandler(async (event) => {
   try {
     const { message } = await readBody(event);
     
-    const result = await koreshield.scan(message);
+    const result = await Koreshield.scan(message);
     
     if (result.isThreat) {
       // Log security event
@@ -511,10 +511,10 @@ export default defineEventHandler(async (event) => {
     return await processMessage(message);
     
   } catch (error) {
-    // Handle KoreShield API errors gracefully
-    if (error.code === 'KORESHIELD_TIMEOUT') {
+    // Handle Koreshield API errors gracefully
+    if (error.code === 'Koreshield_TIMEOUT') {
       // Fallback behavior
-      console.warn('KoreShield timeout, allowing request');
+      console.warn('Koreshield timeout, allowing request');
       return await processMessage(message);
     }
     throw error;
@@ -559,6 +559,6 @@ export default defineEventHandler((event) => {
 
 ## Support
 
-- **Discord**: [discord.gg/koreshield](https://discord.gg/koreshield)
-- **GitHub**: [github.com/koreshield/koreshield](https://github.com/koreshield/koreshield)
-- **Email**: support@koreshield.com
+- **Discord**: [discord.gg/Koreshield](https://discord.gg/Koreshield)
+- **GitHub**: [github.com/Koreshield/Koreshield](https://github.com/Koreshield/Koreshield)
+- **Email**: support@Koreshield.com

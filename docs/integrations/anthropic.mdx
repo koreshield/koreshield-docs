@@ -1,6 +1,6 @@
 ---
 title: Anthropic Claude Integration
-description: Integrate KoreShield with Anthropic Claude for secure AI conversations
+description: Integrate Koreshield with Anthropic Claude for secure AI conversations
 published: true
 ---
 
@@ -11,17 +11,17 @@ Protect your Claude applications from prompt injection and security threats.
 ## Installation
 
 ```bash
-npm install koreshield-sdk @anthropic-ai/sdk
+npm install Koreshield-sdk @anthropic-ai/sdk
 ```
 
 ## Basic Integration
 
 ```typescript
-import { KoreShield } from 'koreshield-sdk';
+import { Koreshield } from 'Koreshield-sdk';
 import Anthropic from '@anthropic-ai/sdk';
 
-const koreshield = new KoreShield({
-  apiKey: process.env.KORESHIELD_API_KEY,
+const Koreshield = new Koreshield({
+  apiKey: process.env.Koreshield_API_KEY,
 });
 
 const anthropic = new Anthropic({
@@ -30,7 +30,7 @@ const anthropic = new Anthropic({
 
 async function secureClaude(userMessage: string) {
   // Scan input
-  const scan = await koreshield.scan({
+  const scan = await Koreshield.scan({
     content: userMessage,
     userId: 'user-123',
   });
@@ -54,10 +54,10 @@ async function secureClaude(userMessage: string) {
 
 ```typescript
 const anthropic = new Anthropic({
-  baseURL: 'https://api.koreshield.com/v1/proxy/anthropic',
+  baseURL: 'https://api.Koreshield.com/v1/proxy/anthropic',
   apiKey: process.env.ANTHROPIC_API_KEY,
   defaultHeaders: {
-    'X-KoreShield-API-Key': process.env.KORESHIELD_API_KEY,
+    'X-Koreshield-API-Key': process.env.Koreshield_API_KEY,
   },
 });
 
@@ -73,7 +73,7 @@ const message = await anthropic.messages.create({
 
 ```typescript
 async function secureStream(userMessage: string) {
-  const scan = await koreshield.scan({ content: userMessage });
+  const scan = await Koreshield.scan({ content: userMessage });
   
   if (scan.threat_detected) {
     throw new Error('Threat detected');
@@ -112,7 +112,7 @@ const tools: Anthropic.Tool[] = [
 
 async function secureToolUse(userMessage: string) {
   // Scan message
-  const scan = await koreshield.scan({ content: userMessage });
+  const scan = await Koreshield.scan({ content: userMessage });
   
   if (scan.threat_detected) {
     throw new Error('Threat detected');
@@ -132,7 +132,7 @@ async function secureToolUse(userMessage: string) {
 
   if (toolUse) {
     // Scan tool inputs
-    const inputScan = await koreshield.scan({
+    const inputScan = await Koreshield.scan({
       content: JSON.stringify(toolUse.input),
     });
 
@@ -178,7 +178,7 @@ import fs from 'fs';
 
 async function secureVision(imageUrl: string, query: string) {
   // Scan text query
-  const scan = await koreshield.scan({ content: query });
+  const scan = await Koreshield.scan({ content: query });
   
   if (scan.threat_detected) {
     throw new Error('Threat detected in query');
@@ -224,7 +224,7 @@ async function secureConversation(
   newMessage: string
 ) {
   // Scan new message
-  const scan = await koreshield.scan({ content: newMessage });
+  const scan = await Koreshield.scan({ content: newMessage });
   
   if (scan.threat_detected) {
     throw new Error('Threat detected');
@@ -257,7 +257,7 @@ async function secureWithSystemPrompt(
   userMessage: string
 ) {
   // Scan user message
-  const scan = await koreshield.scan({ content: userMessage });
+  const scan = await Koreshield.scan({ content: userMessage });
   
   if (scan.threat_detected) {
     throw new Error('Threat detected');
@@ -281,7 +281,7 @@ async function secureWithParams(
   userMessage: string,
   temperature: number = 0.7
 ) {
-  const scan = await koreshield.scan({ content: userMessage });
+  const scan = await Koreshield.scan({ content: userMessage });
   
   if (scan.threat_detected) {
     throw new Error('Threat detected');
@@ -304,11 +304,11 @@ async function secureWithParams(
 ```typescript
 // app/api/chat/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { KoreShield } from 'koreshield-sdk';
+import { Koreshield } from 'Koreshield-sdk';
 import Anthropic from '@anthropic-ai/sdk';
 
-const koreshield = new KoreShield({
-  apiKey: process.env.KORESHIELD_API_KEY!,
+const Koreshield = new Koreshield({
+  apiKey: process.env.Koreshield_API_KEY!,
 });
 
 const anthropic = new Anthropic({
@@ -319,8 +319,8 @@ export async function POST(req: NextRequest) {
   try {
     const { message } = await req.json();
 
-    // Scan with KoreShield
-    const scan = await koreshield.scan({
+    // Scan with Koreshield
+    const scan = await Koreshield.scan({
       content: message,
       userId: req.headers.get('x-user-id') || undefined,
     });
@@ -410,7 +410,7 @@ export function SecureChatComponent() {
 ```typescript
 async function robustClaude(message: string) {
   try {
-    const scan = await koreshield.scan({
+    const scan = await Koreshield.scan({
       content: message,
       timeout: 5000,
     });

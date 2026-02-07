@@ -1,17 +1,17 @@
 ---
 title: Browser Integration
-description: Direct browser integration with KoreShield SDK
+description: Direct browser integration with Koreshield SDK
 ---
 
 # Browser Integration
 
-Integrate KoreShield directly in the browser without build tools or frameworks. Perfect for static sites, vanilla JavaScript applications, or when you need minimal dependencies.
+Integrate Koreshield directly in the browser without build tools or frameworks. Perfect for static sites, vanilla JavaScript applications, or when you need minimal dependencies.
 
 ## Quick Start
 
 ### CDN Installation
 
-Add KoreShield to your HTML page:
+Add Koreshield to your HTML page:
 
 ```html
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ Add KoreShield to your HTML page:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My App with KoreShield</title>
+    <title>My App with Koreshield</title>
 </head>
 <body>
     <div id="app">
@@ -29,13 +29,13 @@ Add KoreShield to your HTML page:
         <button onclick="sendMessage()">Send</button>
     </div>
 
-    <!-- KoreShield SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/koreshield@latest/dist/browser/index.global.js"></script>
+    <!-- Koreshield SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/Koreshield@latest/dist/browser/index.global.js"></script>
 
     <script>
-        // Initialize KoreShield
-        const koreShield = KoreShield.createClient({
-            baseURL: 'https://your-koreshield-instance.com',
+        // Initialize Koreshield
+        const Koreshield = Koreshield.createClient({
+            baseURL: 'https://your-Koreshield-instance.com',
             apiKey: 'your-api-key'
         });
 
@@ -53,8 +53,8 @@ Add KoreShield to your HTML page:
             input.value = '';
 
             try {
-                // Send to KoreShield
-                const response = await koreShield.createChatCompletion({
+                // Send to Koreshield
+                const response = await Koreshield.createChatCompletion({
                     model: 'gpt-3.5-turbo',
                     messages: messages
                 });
@@ -86,19 +86,19 @@ Add KoreShield to your HTML page:
 ### jsDelivr (Recommended)
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/koreshield@latest/dist/browser/index.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/Koreshield@latest/dist/browser/index.global.js"></script>
 ```
 
 ### UNPKG
 
 ```html
-<script src="https://unpkg.com/koreshield@latest/dist/browser/index.global.js"></script>
+<script src="https://unpkg.com/Koreshield@latest/dist/browser/index.global.js"></script>
 ```
 
 ### Specific Version
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/koreshield@1.0.0/dist/browser/index.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/Koreshield@1.0.0/dist/browser/index.global.js"></script>
 ```
 
 ## Configuration
@@ -106,8 +106,8 @@ Add KoreShield to your HTML page:
 ### Basic Configuration
 
 ```javascript
-const koreShield = KoreShield.createClient({
-    baseURL: 'https://your-koreshield-instance.com', // Required
+const Koreshield = Koreshield.createClient({
+    baseURL: 'https://your-Koreshield-instance.com', // Required
     apiKey: 'your-api-key',                          // Optional
     timeout: 30000,                                  // Request timeout
     debug: false                                     // Debug logging
@@ -120,18 +120,18 @@ For client-side applications, avoid hardcoding secrets. Use a configuration endp
 
 ```javascript
 // Fetch config from your server
-async function initializeKoreShield() {
+async function initializeKoreshield() {
     try {
         const configResponse = await fetch('/api/config');
         const config = await configResponse.json();
 
-        return KoreShield.createClient({
-            baseURL: config.koreShieldUrl,
+        return Koreshield.createClient({
+            baseURL: config.KoreshieldUrl,
             apiKey: config.apiKey,
             debug: config.debug
         });
     } catch (error) {
-        console.error('Failed to initialize KoreShield:', error);
+        console.error('Failed to initialize Koreshield:', error);
         throw error;
     }
 }
@@ -144,7 +144,7 @@ async function initializeKoreShield() {
 ```javascript
 async function chat(message) {
     try {
-        const response = await koreShield.createChatCompletion({
+        const response = await Koreshield.createChatCompletion({
             model: 'gpt-3.5-turbo',
             messages: [
                 { role: 'system', content: 'You are a helpful assistant.' },
@@ -163,7 +163,7 @@ async function chat(message) {
 ### Security Options
 
 ```javascript
-const response = await koreShield.createChatCompletion({
+const response = await Koreshield.createChatCompletion({
     model: 'gpt-3.5-turbo',
     messages: [{ role: 'user', content: 'Hello!' }]
 }, {
@@ -177,7 +177,7 @@ const response = await koreShield.createChatCompletion({
 // Get security metrics
 async function checkMetrics() {
     try {
-        const metrics = await koreShield.getMetrics();
+        const metrics = await Koreshield.getMetrics();
         console.log('Total requests:', metrics.totalRequests);
         console.log('Security violations:', metrics.securityViolations);
     } catch (error) {
@@ -188,7 +188,7 @@ async function checkMetrics() {
 // Get security events
 async function checkSecurityEvents() {
     try {
-        const events = await koreShield.getSecurityEvents({
+        const events = await Koreshield.getSecurityEvents({
             limit: 10,
             severity: 'high'
         });
@@ -205,13 +205,13 @@ async function checkSecurityEvents() {
 
 ## OpenAI Compatibility
 
-Use KoreShield as a drop-in replacement for OpenAI:
+Use Koreshield as a drop-in replacement for OpenAI:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/koreshield@latest/dist/browser/index.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/Koreshield@latest/dist/browser/index.global.js"></script>
 <script>
-const openai = new KoreShield.KoreShieldOpenAI({
-    baseURL: 'https://your-koreshield-instance.com',
+const openai = new Koreshield.KoreshieldOpenAI({
+    baseURL: 'https://your-Koreshield-instance.com',
     apiKey: 'your-api-key'
 });
 
@@ -235,7 +235,7 @@ async function chat() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KoreShield Chat</title>
+    <title>Koreshield Chat</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -312,24 +312,24 @@ async function chat() {
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/koreshield@latest/dist/browser/index.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/Koreshield@latest/dist/browser/index.global.js"></script>
     <script>
-        let koreShield;
+        let Koreshield;
         let messages = [];
         const messagesDiv = document.getElementById('messages');
         const messageInput = document.getElementById('messageInput');
         const sendButton = document.getElementById('sendButton');
 
-        // Initialize KoreShield
+        // Initialize Koreshield
         async function init() {
             try {
-                koreShield = KoreShield.createClient({
-                    baseURL: 'https://your-koreshield-instance.com', // Replace with your instance
+                Koreshield = Koreshield.createClient({
+                    baseURL: 'https://your-Koreshield-instance.com', // Replace with your instance
                     apiKey: 'your-api-key', // Replace with your key
                     debug: true
                 });
 
-                displayMessage('system', 'KoreShield initialized successfully! 🔒');
+                displayMessage('system', 'Koreshield initialized successfully! 🔒');
             } catch (error) {
                 displayMessage('error', `Failed to initialize: ${error.message}`);
             }
@@ -338,7 +338,7 @@ async function chat() {
         // Send message
         async function sendMessage() {
             const messageText = messageInput.value.trim();
-            if (!messageText || !koreShield) return;
+            if (!messageText || !Koreshield) return;
 
             // Add user message
             messages.push({ role: 'user', content: messageText });
@@ -348,7 +348,7 @@ async function chat() {
             sendButton.textContent = 'Sending...';
 
             try {
-                const response = await koreShield.createChatCompletion({
+                const response = await Koreshield.createChatCompletion({
                     model: 'gpt-3.5-turbo',
                     messages: messages
                 });
@@ -449,17 +449,17 @@ async function safeApiCall(apiFunction) {
 ### Connection Pooling
 
 ```javascript
-// Reuse KoreShield instance
-let koreShieldInstance;
+// Reuse Koreshield instance
+let KoreshieldInstance;
 
-function getKoreShield() {
-    if (!koreShieldInstance) {
-        koreShieldInstance = KoreShield.createClient({
-            baseURL: 'https://your-koreshield-instance.com',
+function getKoreshield() {
+    if (!KoreshieldInstance) {
+        KoreshieldInstance = Koreshield.createClient({
+            baseURL: 'https://your-Koreshield-instance.com',
             apiKey: 'your-api-key'
         });
     }
-    return koreShieldInstance;
+    return KoreshieldInstance;
 }
 ```
 
@@ -493,7 +493,7 @@ async function cachedChat(messages) {
         return responseCache.get(cacheKey);
     }
 
-    const response = await koreShield.createChatCompletion({
+    const response = await Koreshield.createChatCompletion({
         model: 'gpt-3.5-turbo',
         messages
     });
@@ -511,15 +511,15 @@ Never expose API keys in client-side code:
 
 ```javascript
 // ❌ Bad - API key in client code
-const koreShield = KoreShield.createClient({
+const Koreshield = Koreshield.createClient({
     baseURL: 'https://api.example.com',
     apiKey: 'sk-1234567890abcdef' // Exposed to users!
 });
 
 // ✅ Good - Fetch from server
 async function init() {
-    const config = await fetch('/api/koreshield-config').then(r => r.json());
-    return KoreShield.createClient(config);
+    const config = await fetch('/api/Koreshield-config').then(r => r.json());
+    return Koreshield.createClient(config);
 }
 ```
 
@@ -531,7 +531,7 @@ Add CSP headers to protect against XSS:
 <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     script-src 'self' https://cdn.jsdelivr.net;
-    connect-src 'self' https://your-koreshield-instance.com;
+    connect-src 'self' https://your-Koreshield-instance.com;
 ">
 ```
 
@@ -556,7 +556,7 @@ function validateMessage(message) {
 
 ## Browser Compatibility
 
-KoreShield SDK supports all modern browsers:
+Koreshield SDK supports all modern browsers:
 
 - Chrome 70+
 - Firefox 65+
@@ -575,7 +575,7 @@ For older browsers, consider using a polyfill:
 
 If you encounter CORS errors:
 
-1. Ensure your KoreShield instance allows your domain
+1. Ensure your Koreshield instance allows your domain
 2. Check server CORS configuration
 3. Use a proxy endpoint on your server
 
@@ -592,8 +592,8 @@ Common network issues:
 Enable debug logging for troubleshooting:
 
 ```javascript
-const koreShield = KoreShield.createClient({
-    baseURL: 'https://your-koreshield-instance.com',
+const Koreshield = Koreshield.createClient({
+    baseURL: 'https://your-Koreshield-instance.com',
     debug: true
 });
 ```
@@ -608,7 +608,7 @@ Deploy to any static host (Netlify, Vercel, GitHub Pages):
 
 ```html
 <!-- index.html -->
-<script src="https://cdn.jsdelivr.net/npm/koreshield@latest/dist/browser/index.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/Koreshield@latest/dist/browser/index.global.js"></script>
 ```
 
 ### CDN Integration
@@ -616,7 +616,7 @@ Deploy to any static host (Netlify, Vercel, GitHub Pages):
 For better performance, host the SDK on your CDN:
 
 ```html
-<script src="https://your-cdn.com/koreshield/index.global.js"></script>
+<script src="https://your-cdn.com/Koreshield/index.global.js"></script>
 ```
 
 ## Next Steps

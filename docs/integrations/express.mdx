@@ -1,21 +1,21 @@
 ---
 title: Express.js Integration
-description: Integrate KoreShield security into your Express.js applications with middleware
+description: Integrate Koreshield security into your Express.js applications with middleware
 published: true
 ---
 
 # Express.js Integration
 
-Add enterprise-grade LLM security to your Express.js applications with KoreShield middleware.
+Add enterprise-grade LLM security to your Express.js applications with Koreshield middleware.
 
 ## Installation
 
 ```bash
-npm install @koreshield/node-sdk express
+npm install @Koreshield/node-sdk express
 # or
-yarn add @koreshield/node-sdk express
+yarn add @Koreshield/node-sdk express
 # or
-pnpm add @koreshield/node-sdk express
+pnpm add @Koreshield/node-sdk express
 ```
 
 ## Basic Setup
@@ -24,26 +24,26 @@ pnpm add @koreshield/node-sdk express
 
 ```javascript
 const express = require('express');
-const { KoreShieldMiddleware } = require('@koreshield/node-sdk');
+const { KoreshieldMiddleware } = require('@Koreshield/node-sdk');
 
 const app = express();
 app.use(express.json());
 
-// Initialize KoreShield middleware
-const koreshield = new KoreShieldMiddleware({
-  apiKey: process.env.KORESHIELD_API_KEY,
-  baseUrl: process.env.KORESHIELD_BASE_URL || 'https://api.koreshield.com',
+// Initialize Koreshield middleware
+const Koreshield = new KoreshieldMiddleware({
+  apiKey: process.env.Koreshield_API_KEY,
+  baseUrl: process.env.Koreshield_BASE_URL || 'https://api.Koreshield.com',
   sensitivity: 'medium',
 });
 
 // Apply middleware globally
-app.use(koreshield.protect());
+app.use(Koreshield.protect());
 
 // Your routes
 app.post('/api/chat', async (req, res) => {
   const { message } = req.body;
   
-  // Message is already scanned by KoreShield middleware
+  // Message is already scanned by Koreshield middleware
   // If threat detected, request won't reach here
   
   // Call your LLM
@@ -63,11 +63,11 @@ Protect specific routes only:
 
 ```javascript
 const express = require('express');
-const { KoreShieldMiddleware } = require('@koreshield/node-sdk');
+const { KoreshieldMiddleware } = require('@Koreshield/node-sdk');
 
 const app = express();
-const koreshield = new KoreShieldMiddleware({
-  apiKey: process.env.KORESHIELD_API_KEY,
+const Koreshield = new KoreshieldMiddleware({
+  apiKey: process.env.Koreshield_API_KEY,
 });
 
 // Public routes (no protection)
@@ -77,7 +77,7 @@ app.get('/api/health', (req, res) => {
 
 // Protected AI routes
 app.post('/api/chat', 
-  koreshield.protect({ fields: ['message'] }),
+  Koreshield.protect({ fields: ['message'] }),
   async (req, res) => {
     const { message } = req.body;
     const response = await callLLM(message);
@@ -86,7 +86,7 @@ app.post('/api/chat',
 );
 
 app.post('/api/completion',
-  koreshield.protect({ 
+  Koreshield.protect({ 
     fields: ['prompt', 'context'],
     sensitivity: 'high'
   }),
@@ -103,8 +103,8 @@ app.post('/api/completion',
 ### Custom Error Handling
 
 ```javascript
-const koreshield = new KoreShieldMiddleware({
-  apiKey: process.env.KORESHIELD_API_KEY,
+const Koreshield = new KoreshieldMiddleware({
+  apiKey: process.env.Koreshield_API_KEY,
   onThreatDetected: (threat, req, res) => {
     // Custom logging
     console.error('Threat detected:', {
@@ -129,7 +129,7 @@ const koreshield = new KoreShieldMiddleware({
 
 ```javascript
 app.post('/api/chat',
-  koreshield.protect({
+  Koreshield.protect({
     getSensitivity: (req) => {
       // Admin users get relaxed security
       if (req.user?.role === 'admin') return 'low';
@@ -150,7 +150,7 @@ app.post('/api/chat',
 
 ```javascript
 app.post('/api/generate',
-  koreshield.protect({
+  Koreshield.protect({
     fields: {
       'body.prompt': { required: true, sensitivity: 'high' },
       'body.context': { required: false, sensitivity: 'medium' },
@@ -170,11 +170,11 @@ app.post('/api/generate',
 
 ```javascript
 const express = require('express');
-const { KoreShieldProxy } = require('@koreshield/node-sdk');
+const { KoreshieldProxy } = require('@Koreshield/node-sdk');
 
 const app = express();
-const proxy = new KoreShieldProxy({
-  apiKey: process.env.KORESHIELD_API_KEY,
+const proxy = new KoreshieldProxy({
+  apiKey: process.env.Koreshield_API_KEY,
   provider: 'openai',
   providerApiKey: process.env.OPENAI_API_KEY,
 });
@@ -189,11 +189,11 @@ app.listen(3000);
 ### Scan Before LLM Call
 
 ```javascript
-const { KoreShieldClient } = require('@koreshield/node-sdk');
+const { KoreshieldClient } = require('@Koreshield/node-sdk');
 const OpenAI = require('openai');
 
-const koreshield = new KoreShieldClient({
-  apiKey: process.env.KORESHIELD_API_KEY,
+const Koreshield = new KoreshieldClient({
+  apiKey: process.env.Koreshield_API_KEY,
 });
 
 const openai = new OpenAI({
@@ -204,7 +204,7 @@ app.post('/api/chat', async (req, res) => {
   const { message } = req.body;
   
   // Scan input
-  const scanResult = await koreshield.scan(message);
+  const scanResult = await Koreshield.scan(message);
   
   if (scanResult.isThreat) {
     return res.status(403).json({
@@ -229,20 +229,20 @@ Combine with express-rate-limit:
 
 ```javascript
 const rateLimit = require('express-rate-limit');
-const { KoreShieldMiddleware } = require('@koreshield/node-sdk');
+const { KoreshieldMiddleware } = require('@Koreshield/node-sdk');
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // limit each IP to 100 requests per windowMs
 });
 
-const koreshield = new KoreShieldMiddleware({
-  apiKey: process.env.KORESHIELD_API_KEY,
+const Koreshield = new KoreshieldMiddleware({
+  apiKey: process.env.Koreshield_API_KEY,
 });
 
 app.post('/api/chat',
   limiter, // Rate limit first
-  koreshield.protect(), // Then security scan
+  Koreshield.protect(), // Then security scan
   async (req, res) => {
     // Handle secure request
   }
@@ -255,7 +255,7 @@ Protect streaming LLM responses:
 
 ```javascript
 app.post('/api/stream',
-  koreshield.protect(),
+  Koreshield.protect(),
   async (req, res) => {
     const { prompt } = req.body;
     
@@ -283,12 +283,12 @@ app.post('/api/stream',
 
 ```typescript
 import express, { Request, Response } from 'express';
-import { KoreShieldMiddleware, ThreatDetection } from '@koreshield/node-sdk';
+import { KoreshieldMiddleware, ThreatDetection } from '@Koreshield/node-sdk';
 
 const app = express();
 
-const koreshield = new KoreShieldMiddleware({
-  apiKey: process.env.KORESHIELD_API_KEY!,
+const Koreshield = new KoreshieldMiddleware({
+  apiKey: process.env.Koreshield_API_KEY!,
   onThreatDetected: (threat: ThreatDetection, req: Request, res: Response) => {
     res.status(403).json({
       error: 'Threat detected',
@@ -304,7 +304,7 @@ interface ChatRequest {
 }
 
 app.post('/api/chat',
-  koreshield.protect({ fields: ['message'] }),
+  Koreshield.protect({ fields: ['message'] }),
   async (req: Request<{}, {}, ChatRequest>, res: Response) => {
     const { message } = req.body;
     // Type-safe and secure
@@ -318,9 +318,9 @@ app.post('/api/chat',
 
 ```env
 # .env
-KORESHIELD_API_KEY=ks_prod_xxxxxxxxxxxx
-KORESHIELD_BASE_URL=https://api.koreshield.com
-KORESHIELD_SENSITIVITY=medium
+Koreshield_API_KEY=ks_prod_xxxxxxxxxxxx
+Koreshield_BASE_URL=https://api.Koreshield.com
+Koreshield_SENSITIVITY=medium
 
 # Optional
 OPENAI_API_KEY=sk-proj-xxxxxxxxxxxx
@@ -331,10 +331,10 @@ Load config:
 ```javascript
 require('dotenv').config();
 
-const koreshield = new KoreShieldMiddleware({
-  apiKey: process.env.KORESHIELD_API_KEY,
-  baseUrl: process.env.KORESHIELD_BASE_URL,
-  sensitivity: process.env.KORESHIELD_SENSITIVITY || 'medium',
+const Koreshield = new KoreshieldMiddleware({
+  apiKey: process.env.Koreshield_API_KEY,
+  baseUrl: process.env.Koreshield_BASE_URL,
+  sensitivity: process.env.Koreshield_SENSITIVITY || 'medium',
 });
 ```
 
@@ -367,11 +367,11 @@ describe('Protected endpoints', () => {
 });
 ```
 
-### Mock KoreShield for Tests
+### Mock Koreshield for Tests
 
 ```javascript
-jest.mock('@koreshield/node-sdk', () => ({
-  KoreShieldMiddleware: jest.fn().mockImplementation(() => ({
+jest.mock('@Koreshield/node-sdk', () => ({
+  KoreshieldMiddleware: jest.fn().mockImplementation(() => ({
     protect: () => (req, res, next) => next(),
   })),
 }));
@@ -382,8 +382,8 @@ jest.mock('@koreshield/node-sdk', () => ({
 Track security metrics:
 
 ```javascript
-const koreshield = new KoreShieldMiddleware({
-  apiKey: process.env.KORESHIELD_API_KEY,
+const Koreshield = new KoreshieldMiddleware({
+  apiKey: process.env.Koreshield_API_KEY,
   onThreatDetected: async (threat, req) => {
     // Log to monitoring service
     await monitoring.trackEvent('security.threat_blocked', {
@@ -405,13 +405,13 @@ const koreshield = new KoreShieldMiddleware({
 ### Graceful Degradation
 
 ```javascript
-const koreshield = new KoreShieldMiddleware({
-  apiKey: process.env.KORESHIELD_API_KEY,
+const Koreshield = new KoreshieldMiddleware({
+  apiKey: process.env.Koreshield_API_KEY,
   fallbackMode: 'allow', // or 'block'
   timeout: 5000, // 5 second timeout
   onError: (error, req) => {
-    console.error('KoreShield error:', error);
-    // Allow request to proceed if KoreShield is down
+    console.error('Koreshield error:', error);
+    // Allow request to proceed if Koreshield is down
   },
 });
 ```
@@ -435,10 +435,10 @@ app.post('/api/chat',
       return next();
     }
     
-    // Continue to KoreShield middleware
+    // Continue to Koreshield middleware
     next();
   },
-  koreshield.protect(),
+  Koreshield.protect(),
   async (req, res) => {
     // Handle request
   }
@@ -453,6 +453,6 @@ app.post('/api/chat',
 
 ## Support
 
-- **Discord**: [discord.gg/koreshield](https://discord.gg/koreshield)
-- **GitHub**: [github.com/koreshield/koreshield](https://github.com/koreshield/koreshield)
-- **Email**: support@koreshield.com
+- **Discord**: [discord.gg/Koreshield](https://discord.gg/Koreshield)
+- **GitHub**: [github.com/Koreshield/Koreshield](https://github.com/Koreshield/Koreshield)
+- **Email**: support@Koreshield.com

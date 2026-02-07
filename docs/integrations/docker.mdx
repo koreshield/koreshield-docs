@@ -1,31 +1,31 @@
 ---
 title: Docker Deployment
-description: Deploy KoreShield using Docker and Docker Compose
+description: Deploy Koreshield using Docker and Docker Compose
 published: true
 ---
 
 # Docker Deployment
 
-Deploy KoreShield quickly using Docker containers for development and production environments.
+Deploy Koreshield quickly using Docker containers for development and production environments.
 
 ## Quick Start
 
 ### Pull Official Image
 
 ```bash
-docker pull koreshield/koreshield:latest
+docker pull Koreshield/Koreshield:latest
 ```
 
 ### Run Container
 
 ```bash
 docker run -d \
-  --name koreshield \
+  --name Koreshield \
   -p 8080:8080 \
-  -e KORESHIELD_API_KEY=your_api_key \
+  -e Koreshield_API_KEY=your_api_key \
   -e REDIS_URL=redis://redis:6379 \
-  -e DATABASE_URL=postgresql://user:pass@postgres:5432/koreshield \
-  koreshield/koreshield:latest
+  -e DATABASE_URL=postgresql://user:pass@postgres:5432/Koreshield \
+  Koreshield/Koreshield:latest
 ```
 
 ## Docker Compose
@@ -37,14 +37,14 @@ docker run -d \
 version: '3.8'
 
 services:
-  koreshield:
-    image: koreshield/koreshield:latest
+  Koreshield:
+    image: Koreshield/Koreshield:latest
     ports:
       - "8080:8080"
     environment:
-      - KORESHIELD_API_KEY=${KORESHIELD_API_KEY}
+      - Koreshield_API_KEY=${Koreshield_API_KEY}
       - REDIS_URL=redis://redis:6379
-      - DATABASE_URL=postgresql://postgres:password@postgres:5432/koreshield
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/Koreshield
       - LOG_LEVEL=info
     depends_on:
       - redis
@@ -62,7 +62,7 @@ services:
   postgres:
     image: postgres:15-alpine
     environment:
-      - POSTGRES_DB=koreshield
+      - POSTGRES_DB=Koreshield
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
     volumes:
@@ -87,8 +87,8 @@ docker-compose up -d
 version: '3.8'
 
 services:
-  koreshield:
-    image: koreshield/koreshield:2.0.0
+  Koreshield:
+    image: Koreshield/Koreshield:2.0.0
     deploy:
       replicas: 3
       resources:
@@ -101,8 +101,8 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - KORESHIELD_ENV=production
-      - KORESHIELD_API_KEY=${KORESHIELD_API_KEY}
+      - Koreshield_ENV=production
+      - Koreshield_API_KEY=${Koreshield_API_KEY}
       - REDIS_URL=redis://redis:6379
       - DATABASE_URL=${DATABASE_URL}
       - SENTRY_DSN=${SENTRY_DSN}
@@ -114,7 +114,7 @@ services:
       retries: 3
     restart: always
     networks:
-      - koreshield_network
+      - Koreshield_network
 
   nginx:
     image: nginx:alpine
@@ -125,9 +125,9 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./ssl:/etc/nginx/ssl
     depends_on:
-      - koreshield
+      - Koreshield
     networks:
-      - koreshield_network
+      - Koreshield_network
 
   redis:
     image: redis:7-alpine
@@ -135,10 +135,10 @@ services:
     volumes:
       - redis_data:/data
     networks:
-      - koreshield_network
+      - Koreshield_network
 
 networks:
-  koreshield_network:
+  Koreshield_network:
     driver: bridge
 
 volumes:
@@ -168,9 +168,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Create non-root user
-RUN useradd -m -u 1000 koreshield && \
-    chown -R koreshield:koreshield /app
-USER koreshield
+RUN useradd -m -u 1000 Koreshield && \
+    chown -R Koreshield:Koreshield /app
+USER Koreshield
 
 # Expose port
 EXPOSE 8080
@@ -180,23 +180,23 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
   CMD curl -f http://localhost:8080/health || exit 1
 
 # Run application
-CMD ["python", "-m", "koreshield.server"]
+CMD ["python", "-m", "Koreshield.server"]
 ```
 
 Build and run:
 
 ```bash
-docker build -t my-koreshield:latest .
-docker run -d -p 8080:8080 my-koreshield:latest
+docker build -t my-Koreshield:latest .
+docker run -d -p 8080:8080 my-Koreshield:latest
 ```
 
 ## Environment Variables
 
 ```env
 # Core
-KORESHIELD_ENV=production
-KORESHIELD_API_KEY=ks_prod_xxxxxxxxxxxx
-KORESHIELD_BASE_URL=https://api.koreshield.com
+Koreshield_ENV=production
+Koreshield_API_KEY=ks_prod_xxxxxxxxxxxx
+Koreshield_BASE_URL=https://api.Koreshield.com
 
 # Database
 DATABASE_URL=postgresql://user:pass@host:5432/dbname
@@ -227,16 +227,16 @@ docker run -d \
   -v $(pwd)/config.yaml:/app/config.yaml \
   -v $(pwd)/allowlist.json:/app/data/allowlist.json \
   -v $(pwd)/blocklist.json:/app/data/blocklist.json \
-  koreshield/koreshield:latest
+  Koreshield/Koreshield:latest
 ```
 
 ### Persistent Data
 
 ```bash
 docker run -d \
-  -v koreshield_logs:/app/logs \
-  -v koreshield_data:/app/data \
-  koreshield/koreshield:latest
+  -v Koreshield_logs:/app/logs \
+  -v Koreshield_data:/app/data \
+  Koreshield/Koreshield:latest
 ```
 
 ## Multi-Stage Build
@@ -266,7 +266,7 @@ USER 1000:1000
 
 EXPOSE 8080
 
-CMD ["python", "-m", "koreshield.server"]
+CMD ["python", "-m", "Koreshield.server"]
 ```
 
 ## Docker Swarm
@@ -278,8 +278,8 @@ Deploy with Swarm:
 version: '3.8'
 
 services:
-  koreshield:
-    image: koreshield/koreshield:latest
+  Koreshield:
+    image: Koreshield/Koreshield:latest
     deploy:
       replicas: 5
       update_config:
@@ -290,19 +290,19 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - KORESHIELD_API_KEY=${KORESHIELD_API_KEY}
+      - Koreshield_API_KEY=${Koreshield_API_KEY}
     networks:
-      - koreshield
+      - Koreshield
 
 networks:
-  koreshield:
+  Koreshield:
     driver: overlay
 ```
 
 Deploy:
 
 ```bash
-docker stack deploy -c docker-stack.yml koreshield
+docker stack deploy -c docker-stack.yml Koreshield
 ```
 
 ## Monitoring
@@ -334,7 +334,7 @@ services:
 
 ```yaml
 services:
-  koreshield:
+  Koreshield:
     logging:
       driver: "json-file"
       options:
@@ -356,7 +356,7 @@ USER 1000:1000
 # Read-only root filesystem
 docker run --read-only \
   --tmpfs /tmp \
-  koreshield/koreshield:latest
+  Koreshield/Koreshield:latest
 ```
 
 ### Resource Limits
@@ -366,7 +366,7 @@ docker run -d \
   --cpus="2" \
   --memory="4g" \
   --memory-swap="4g" \
-  koreshield/koreshield:latest
+  Koreshield/Koreshield:latest
 ```
 
 ## Troubleshooting
@@ -374,15 +374,15 @@ docker run -d \
 ### View Logs
 
 ```bash
-docker logs koreshield
-docker logs -f koreshield  # Follow logs
+docker logs Koreshield
+docker logs -f Koreshield  # Follow logs
 ```
 
 ### Execute Commands
 
 ```bash
-docker exec -it koreshield bash
-docker exec koreshield python -m koreshield.cli status
+docker exec -it Koreshield bash
+docker exec Koreshield python -m Koreshield.cli status
 ```
 
 ### Health Check
