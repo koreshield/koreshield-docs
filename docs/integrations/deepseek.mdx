@@ -1,6 +1,6 @@
 ---
 title: DeepSeek Integration
-description: Integrate KoreShield with DeepSeek for secure AI applications
+description: Integrate Koreshield with DeepSeek for secure AI applications
 published: true
 ---
 
@@ -11,16 +11,16 @@ Protect your DeepSeek-powered applications from prompt injection and security th
 ## Installation
 
 ```bash
-pip install koreshield-sdk openai  # DeepSeek uses OpenAI-compatible API
+pip install Koreshield-sdk openai  # DeepSeek uses OpenAI-compatible API
 ```
 
 ## Basic Integration
 
 ```python
-from koreshield_sdk import KoreShield
+from Koreshield_sdk import Koreshield
 from openai import OpenAI
 
-koreshield = KoreShield(api_key="ks_live_xxxxxxxxxxxx")
+Koreshield = Koreshield(api_key="ks_live_xxxxxxxxxxxx")
 
 client = OpenAI(
     api_key="your_deepseek_api_key",
@@ -29,7 +29,7 @@ client = OpenAI(
 
 def secure_deepseek_chat(user_message: str) -> str:
     # Scan input
-    scan = koreshield.scan(content=user_message, user_id="user-123")
+    scan = Koreshield.scan(content=user_message, user_id="user-123")
     
     if scan.threat_detected:
         raise ValueError(f"Threat detected: {scan.threat_type}")
@@ -48,9 +48,9 @@ def secure_deepseek_chat(user_message: str) -> str:
 ```python
 client = OpenAI(
     api_key="your_deepseek_api_key",
-    base_url="https://api.koreshield.com/v1/proxy/deepseek",
+    base_url="https://api.Koreshield.com/v1/proxy/deepseek",
     default_headers={
-        "X-KoreShield-API-Key": "ks_live_xxxxxxxxxxxx"
+        "X-Koreshield-API-Key": "ks_live_xxxxxxxxxxxx"
     }
 )
 
@@ -66,7 +66,7 @@ response = client.chat.completions.create(
 ```python
 def secure_code_generation(prompt: str) -> str:
     # Scan prompt
-    scan = koreshield.scan(content=prompt)
+    scan = Koreshield.scan(content=prompt)
     
     if scan.threat_detected:
         raise ValueError("Threat detected in code prompt")
@@ -85,7 +85,7 @@ def secure_code_generation(prompt: str) -> str:
 ```python
 def secure_stream(user_message: str):
     # Scan first
-    scan = koreshield.scan(content=user_message)
+    scan = Koreshield.scan(content=user_message)
     
     if scan.threat_detected:
         raise ValueError("Threat detected")
@@ -124,7 +124,7 @@ tools = [
 
 def secure_function_call(user_message: str):
     # Scan message
-    scan = koreshield.scan(content=user_message)
+    scan = Koreshield.scan(content=user_message)
     
     if scan.threat_detected:
         raise ValueError("Threat detected")
@@ -139,7 +139,7 @@ def secure_function_call(user_message: str):
     
     if tool_call:
         # Scan function arguments
-        args_scan = koreshield.scan(content=tool_call.function.arguments)
+        args_scan = Koreshield.scan(content=tool_call.function.arguments)
         
         if args_scan.threat_detected:
             raise ValueError("Malicious function arguments")
@@ -164,8 +164,8 @@ class ChatRequest(BaseModel):
 @app.post("/api/chat")
 async def chat(request: ChatRequest):
     try:
-        # Scan with KoreShield
-        scan = koreshield.scan(content=request.message)
+        # Scan with Koreshield
+        scan = Koreshield.scan(content=request.message)
         
         if scan.threat_detected:
             raise HTTPException(
@@ -190,7 +190,7 @@ async def chat(request: ChatRequest):
 ```python
 def secure_conversation(messages: list[dict], new_message: str) -> str:
     # Scan new message
-    scan = koreshield.scan(content=new_message)
+    scan = Koreshield.scan(content=new_message)
     
     if scan.threat_detected:
         raise ValueError("Threat detected")
@@ -210,7 +210,7 @@ def secure_conversation(messages: list[dict], new_message: str) -> str:
 
 ```python
 def secure_with_params(user_message: str, temperature: float = 0.7) -> str:
-    scan = koreshield.scan(content=user_message)
+    scan = Koreshield.scan(content=user_message)
     
     if scan.threat_detected:
         raise ValueError("Threat detected")
@@ -255,7 +255,7 @@ def rate_limit(max_calls: int, period: int):
 
 @rate_limit(max_calls=10, period=60)
 def rate_limited_chat(user_id: str, message: str) -> str:
-    scan = koreshield.scan(content=message, user_id=user_id)
+    scan = Koreshield.scan(content=message, user_id=user_id)
     
     if scan.threat_detected:
         raise ValueError("Threat detected")
@@ -273,7 +273,7 @@ def rate_limited_chat(user_id: str, message: str) -> str:
 ```python
 def secure_batch(messages: list[str]) -> list[str]:
     # Scan all messages
-    scans = koreshield.batch_scan(
+    scans = Koreshield.batch_scan(
         items=[{"id": str(i), "content": msg} for i, msg in enumerate(messages)]
     )
     
@@ -306,7 +306,7 @@ async def robust_deepseek(message: str) -> dict:
     try:
         # Scan with timeout
         scan_task = asyncio.create_task(
-            koreshield.scan_async(content=message)
+            Koreshield.scan_async(content=message)
         )
         scan = await asyncio.wait_for(scan_task, timeout=5.0)
         
@@ -322,7 +322,7 @@ async def robust_deepseek(message: str) -> dict:
     
     except asyncio.TimeoutError:
         # Fail open with logging
-        print("KoreShield timeout, proceeding without scan")
+        print("Koreshield timeout, proceeding without scan")
         
         response = client.chat.completions.create(
             model="deepseek-chat",
@@ -338,10 +338,10 @@ async def robust_deepseek(message: str) -> dict:
 from langchain_openai import ChatOpenAI
 from langchain.callbacks.base import BaseCallbackHandler
 
-class KoreShieldCallback(BaseCallbackHandler):
+class KoreshieldCallback(BaseCallbackHandler):
     def on_llm_start(self, serialized, prompts, **kwargs):
         for prompt in prompts:
-            scan = koreshield.scan(content=prompt)
+            scan = Koreshield.scan(content=prompt)
             if scan.threat_detected:
                 raise ValueError(f"Threat detected: {scan.threat_type}")
 
@@ -349,7 +349,7 @@ llm = ChatOpenAI(
     model="deepseek-chat",
     openai_api_key="your_deepseek_api_key",
     openai_api_base="https://api.deepseek.com",
-    callbacks=[KoreShieldCallback()]
+    callbacks=[KoreshieldCallback()]
 )
 
 response = llm.invoke("Tell me about Python")

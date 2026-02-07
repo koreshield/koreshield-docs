@@ -1,20 +1,20 @@
 ---
 title: React/Next.js Integration
-description: Integrate KoreShield SDK with React and Next.js applications
+description: Integrate Koreshield SDK with React and Next.js applications
 ---
 
 # React/Next.js Integration
 
-Learn how to integrate KoreShield's JavaScript SDK with React and Next.js applications for secure AI interactions.
+Learn how to integrate Koreshield's JavaScript SDK with React and Next.js applications for secure AI interactions.
 
 ## Installation
 
 ```bash
-npm install koreshield
+npm install Koreshield
 # or
-yarn add koreshield
+yarn add Koreshield
 # or
-pnpm add koreshield
+pnpm add Koreshield
 ```
 
 ## Basic Setup
@@ -24,20 +24,20 @@ pnpm add koreshield
 Create a `.env.local` file in your Next.js project:
 
 ```bash
-KORESHIELD_BASE_URL=https://your-koreshield-instance.com
-KORESHIELD_API_KEY=your-api-key-here
+Koreshield_BASE_URL=https://your-Koreshield-instance.com
+Koreshield_API_KEY=your-api-key-here
 ```
 
 ### Client Configuration
 
-Create a `lib/koreshield.ts` file:
+Create a `lib/Koreshield.ts` file:
 
 ```typescript
-import { createClient } from 'koreshield';
+import { createClient } from 'Koreshield';
 
-export const koreShield = createClient({
-    baseURL: process.env.KORESHIELD_BASE_URL!,
-    apiKey: process.env.KORESHIELD_API_KEY,
+export const Koreshield = createClient({
+    baseURL: process.env.Koreshield_BASE_URL!,
+    apiKey: process.env.Koreshield_API_KEY,
     debug: process.env.NODE_ENV === 'development'
 });
 ```
@@ -50,8 +50,8 @@ Create a custom hook for chat functionality:
 
 ```typescript
 import { useState, useCallback } from 'react';
-import { koreShield } from '@/lib/koreshield';
-import type { ChatCompletionRequest, ChatCompletionResponse } from 'koreshield';
+import { Koreshield } from '@/lib/Koreshield';
+import type { ChatCompletionRequest, ChatCompletionResponse } from 'Koreshield';
 
 export function useChat() {
     const [messages, setMessages] = useState<Array<{ role: string; content: string }>>([]);
@@ -66,7 +66,7 @@ export function useChat() {
             const newMessages = [...messages, { role: 'user', content }];
             setMessages(newMessages);
 
-            const response = await koreShield.createChatCompletion({
+            const response = await Koreshield.createChatCompletion({
                 model: 'gpt-3.5-turbo',
                 messages: newMessages
             });
@@ -149,18 +149,18 @@ export default function ChatComponent() {
 
 ### Protected API Route
 
-Create secure API routes with KoreShield protection:
+Create secure API routes with Koreshield protection:
 
 ```typescript
 // pages/api/chat.ts or app/api/chat/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { koreShield } from '@/lib/koreshield';
+import { Koreshield } from '@/lib/Koreshield';
 
 export async function POST(request: NextRequest) {
     try {
         const { messages, model = 'gpt-3.5-turbo' } = await request.json();
 
-        const response = await koreShield.createChatCompletion({
+        const response = await Koreshield.createChatCompletion({
             model,
             messages
         });
@@ -229,12 +229,12 @@ export default function ChatPage() {
 
 ## Server-Side Rendering (SSR)
 
-### Data Fetching with KoreShield
+### Data Fetching with Koreshield
 
 ```tsx
 // pages/chat.tsx
 import { GetServerSideProps } from 'next';
-import { koreShield } from '@/lib/koreshield';
+import { Koreshield } from '@/lib/Koreshield';
 
 interface ChatPageProps {
     initialResponse?: string;
@@ -243,7 +243,7 @@ interface ChatPageProps {
 
 export const getServerSideProps: GetServerSideProps<ChatPageProps> = async () => {
     try {
-        const response = await koreShield.createChatCompletion({
+        const response = await Koreshield.createChatCompletion({
             model: 'gpt-3.5-turbo',
             messages: [{ role: 'user', content: 'Hello! Introduce yourself briefly.' }]
         });
@@ -295,7 +295,7 @@ class ErrorBoundary extends React.Component {
     }
 
     componentDidCatch(error, errorInfo) {
-        // Log to KoreShield monitoring
+        // Log to Koreshield monitoring
         console.error('React Error Boundary:', error, errorInfo);
     }
 
@@ -323,13 +323,13 @@ export default ErrorBoundary;
 
 ```tsx
 import { useEffect } from 'react';
-import { koreShield } from '@/lib/koreshield';
+import { Koreshield } from '@/lib/Koreshield';
 
 export function useSecurityMonitoring() {
     useEffect(() => {
         const checkSecurityEvents = async () => {
             try {
-                const events = await koreShield.getSecurityEvents({
+                const events = await Koreshield.getSecurityEvents({
                     limit: 5,
                     severity: 'high'
                 });
@@ -390,8 +390,8 @@ function ChatMessages({ messages }) {
 Ensure these environment variables are set in your deployment platform:
 
 ```bash
-KORESHIELD_BASE_URL=https://your-koreshield-instance.com
-KORESHIELD_API_KEY=your-production-api-key
+Koreshield_BASE_URL=https://your-Koreshield-instance.com
+Koreshield_API_KEY=your-production-api-key
 ```
 
 ### Build Configuration
@@ -402,11 +402,11 @@ Add to your `next.config.js`:
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     env: {
-        KORESHIELD_BASE_URL: process.env.KORESHIELD_BASE_URL,
+        Koreshield_BASE_URL: process.env.Koreshield_BASE_URL,
     },
     // Ensure API routes can access environment variables
     serverRuntimeConfig: {
-        koreShieldApiKey: process.env.KORESHIELD_API_KEY,
+        KoreshieldApiKey: process.env.Koreshield_API_KEY,
     },
 };
 
@@ -422,8 +422,8 @@ module.exports = nextConfig;
 import { renderHook, act } from '@testing-library/react';
 import { useChat } from '@/hooks/useChat';
 
-jest.mock('@/lib/koreshield', () => ({
-    koreShield: {
+jest.mock('@/lib/Koreshield', () => ({
+    Koreshield: {
         createChatCompletion: jest.fn()
     }
 }));
@@ -451,7 +451,7 @@ describe('useChat', () => {
 ### Common Issues
 
 **CORS Errors**
-- Ensure your KoreShield instance allows requests from your domain
+- Ensure your Koreshield instance allows requests from your domain
 - Check CORS configuration in your deployment
 
 **API Key Exposure**

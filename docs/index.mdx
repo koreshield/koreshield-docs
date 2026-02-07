@@ -1,13 +1,13 @@
 ---
 title: Documentation
-description: Welcome to the KoreShield documentation
+description: Welcome to the Koreshield documentation
 icon: House
 slug: /docs
 ---
 
-KoreShield is an open-source security platform designed to protect enterprise applications that use Large Language Models (LLMs) from prompt injection attacks. It acts as a transparent security layer between your application and LLM API providers (DeepSeek, OpenAI, Anthropic, etc.), sanitizing inputs, detecting threats, and enforcing policies before requests reach the model.
+Koreshield is an open-source security platform designed to protect enterprise applications that use Large Language Models (LLMs) from prompt injection attacks. It acts as a transparent security layer between your application and LLM API providers (DeepSeek, OpenAI, Anthropic, etc.), sanitizing inputs, detecting threats, and enforcing policies before requests reach the model.
 
-## Why KoreShield?
+## Why Koreshield?
 
 Prompt injection attacks pose a critical security risk for LLM-integrated systems. Attackers can:
 
@@ -17,7 +17,7 @@ Prompt injection attacks pose a critical security risk for LLM-integrated system
 - Manipulate AI behavior
 - Exfiltrate proprietary information
 
-KoreShield provides defense-in-depth protection with four core security components:
+Koreshield provides defense-in-depth protection with four core security components:
 
 - **Input Sanitization**: Cleans and normalizes prompts to remove potentially malicious content
 - **Attack Detection**: Analyzes prompts and responses for signs of prompt injection and other attacks
@@ -26,7 +26,7 @@ KoreShield provides defense-in-depth protection with four core security componen
 
 ## Supported LLM Providers
 
-KoreShield supports multiple LLM providers through its proxy architecture:
+Koreshield supports multiple LLM providers through its proxy architecture:
 
 - **DeepSeek** - High-performance models with OpenAI-compatible API
 - **OpenAI** - GPT-3.5, GPT-4, and other models
@@ -41,28 +41,28 @@ KoreShield supports multiple LLM providers through its proxy architecture:
 **Python SDK:**
 
 ```bash
-pip install koreshield
+pip install Koreshield
 ```
 
 **JavaScript/TypeScript SDK:**
 
 ```bash
-npm install koreshield
+npm install Koreshield
 ```
 
 ### Deployment Options
 
-KoreShield offers flexible deployment options:
+Koreshield offers flexible deployment options:
 
 ### 1. Proxy Mode (Recommended)
 
-Deploy KoreShield as a standalone security proxy service. Your application sends LLM requests to KoreShield, which validates them before forwarding to your provider. This offers the best security isolation and works with any programming language.
+Deploy Koreshield as a standalone security proxy service. Your application sends LLM requests to Koreshield, which validates them before forwarding to your provider. This offers the best security isolation and works with any programming language.
 
 ```bash
 # Docker deployment
 docker run -p 8000:8000 \
   -e DEEPSEEK_API_KEY=your-key \
-  koreshield/koreshield
+  Koreshield/Koreshield
 
 # Railway deployment
 railway up
@@ -70,18 +70,18 @@ railway up
 
 ### 2. SDK Mode
 
-Use the `koreshield` Python or JavaScript SDK to communicate with your KoreShield proxy or integrate security features directly into your application.
+Use the `Koreshield` Python or JavaScript SDK to communicate with your Koreshield proxy or integrate security features directly into your application.
 
 ```python
-from koreshield import KoreShieldClient
+from Koreshield import KoreshieldClient
 
-client = KoreShieldClient(base_url="http://localhost:8000")
+client = KoreshieldClient(base_url="http://localhost:8000")
 result = client.scan_prompt("Hello, how are you?")
 ```
 
 ## Architecture (Proxy Mode)
 
-When running in Proxy Mode, KoreShield sits transparently between your application and LLM providers:
+When running in Proxy Mode, Koreshield sits transparently between your application and LLM providers:
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -113,7 +113,7 @@ When running in Proxy Mode, KoreShield sits transparently between your applicati
         <h3>📦 Installation</h3>
       </div>
       <div className="card__body">
-        <p>Get up and running with KoreShield in minutes.</p>
+        <p>Get up and running with Koreshield in minutes.</p>
       </div>
       <div className="card__footer">
         <a
@@ -167,7 +167,7 @@ When running in Proxy Mode, KoreShield sits transparently between your applicati
         <h3>📚 API Reference</h3>
       </div>
       <div className="card__body">
-        <p>Explore the complete KoreShield API.</p>
+        <p>Explore the complete Koreshield API.</p>
       </div>
       <div className="card__footer">
         <a href="/api/" className="button button--primary button--block">

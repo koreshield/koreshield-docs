@@ -1,16 +1,16 @@
 ---
 title: Compliance & Certifications
-description: Guide to meeting regulatory requirements with KoreShield (SOC2, HIPAA, GDPR).
+description: Guide to meeting regulatory requirements with Koreshield (SOC2, HIPAA, GDPR).
 published: true
 ---
 
 # Compliance & Certifications
 
-KoreShield is designed to help organizations meet strict security and privacy standards. This guide outlines how our architecture supports compliance with major frameworks.
+Koreshield is designed to help organizations meet strict security and privacy standards. This guide outlines how our architecture supports compliance with major frameworks.
 
 ## SOC 2 Type II
 
-KoreShield creates an audit trail that is essential for SOC 2 controls.
+Koreshield creates an audit trail that is essential for SOC 2 controls.
 
 ### Security Controls
 - **Access Control**: Role-Based Access Control (RBAC) ensures only authorized users can modify security policies.
@@ -28,7 +28,7 @@ For healthcare organizations handling Protected Health Information (PHI).
 
 ```typescript
 // Example: Configuring PHI Redaction
-const koreshield = new KoreShield({
+const Koreshield = new Koreshield({
   apiKey: process.env.KEY,
   policy: {
     pii: {
@@ -42,7 +42,7 @@ const koreshield = new KoreShield({
 ## GDPR Considerations
 
 ### Data Sovereignty
-- **Region Locking**: Configure KoreShield to process data only within specific EU regions.
+- **Region Locking**: Configure Koreshield to process data only within specific EU regions.
 - **Right to Erasure**: API endpoints to delete all data associated with a specific user ID.
 - **Data Minimization**: We strictly limit data retention periods based on your configuration.
 
@@ -55,7 +55,7 @@ For handling payment card information.
 
 ## FedRAMP (Government)
 
-KoreShield's GovCloud deployment option ensures:
+Koreshield's GovCloud deployment option ensures:
 - **FIPS 140-2 Validated Encryption**
 - **US Persons Only Support**
 - **GovCloud Hosting**

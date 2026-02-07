@@ -1,6 +1,6 @@
 ---
 title: OpenAI Integration
-description: Integrate KoreShield with OpenAI API for secure LLM interactions
+description: Integrate Koreshield with OpenAI API for secure LLM interactions
 published: true
 ---
 
@@ -11,7 +11,7 @@ Protect your OpenAI applications from prompt injection attacks and LLM vulnerabi
 ## Installation
 
 ```bash
-npm install koreshield-sdk openai
+npm install Koreshield-sdk openai
 ```
 
 ## Basic Integration
@@ -19,11 +19,11 @@ npm install koreshield-sdk openai
 ### SDK Wrapper
 
 ```typescript
-import { KoreShield } from 'koreshield-sdk';
+import { Koreshield } from 'Koreshield-sdk';
 import OpenAI from 'openai';
 
-const koreshield = new KoreShield({
-  apiKey: process.env.KORESHIELD_API_KEY,
+const Koreshield = new Koreshield({
+  apiKey: process.env.Koreshield_API_KEY,
 });
 
 const openai = new OpenAI({
@@ -32,7 +32,7 @@ const openai = new OpenAI({
 
 async function secureChat(userMessage: string) {
   // Scan input
-  const scan = await koreshield.scan({
+  const scan = await Koreshield.scan({
     content: userMessage,
     userId: 'user-123',
   });
@@ -53,14 +53,14 @@ async function secureChat(userMessage: string) {
 
 ## Proxy Mode
 
-Route all OpenAI requests through KoreShield:
+Route all OpenAI requests through Koreshield:
 
 ```typescript
 const openai = new OpenAI({
-  baseURL: 'https://api.koreshield.com/v1/proxy/openai',
+  baseURL: 'https://api.Koreshield.com/v1/proxy/openai',
   apiKey: process.env.OPENAI_API_KEY,
   defaultHeaders: {
-    'X-KoreShield-API-Key': process.env.KORESHIELD_API_KEY,
+    'X-Koreshield-API-Key': process.env.Koreshield_API_KEY,
   },
 });
 
@@ -76,7 +76,7 @@ const response = await openai.chat.completions.create({
 ```typescript
 async function secureStream(userMessage: string) {
   // Scan first
-  const scan = await koreshield.scan({ content: userMessage });
+  const scan = await Koreshield.scan({ content: userMessage });
   
   if (scan.threat_detected) {
     throw new Error('Threat detected');
@@ -119,7 +119,7 @@ const tools: OpenAI.Chat.ChatCompletionTool[] = [
 
 async function secureFunction(userMessage: string) {
   // Scan message
-  const scan = await koreshield.scan({ content: userMessage });
+  const scan = await Koreshield.scan({ content: userMessage });
   
   if (scan.threat_detected) {
     throw new Error('Threat detected');
@@ -135,7 +135,7 @@ async function secureFunction(userMessage: string) {
   
   if (toolCall) {
     // Scan function arguments
-    const argsScan = await koreshield.scan({
+    const argsScan = await Koreshield.scan({
       content: toolCall.function.arguments,
     });
 
@@ -161,7 +161,7 @@ Protect Assistant threads:
 ```typescript
 async function secureAssistant(threadId: string, message: string) {
   // Scan message
-  const scan = await koreshield.scan({ content: message });
+  const scan = await Koreshield.scan({ content: message });
   
   if (scan.threat_detected) {
     throw new Error('Threat detected');
@@ -198,7 +198,7 @@ async function secureAssistant(threadId: string, message: string) {
 async function secureEmbeddings(texts: string[]) {
   // Scan all texts
   const scans = await Promise.all(
-    texts.map(text => koreshield.scan({ content: text }))
+    texts.map(text => Koreshield.scan({ content: text }))
   );
 
   const threats = scans.filter(s => s.threat_detected);
@@ -228,8 +228,8 @@ app.post('/api/chat', async (req, res) => {
   try {
     const { message } = req.body;
 
-    // Scan with KoreShield
-    const scan = await koreshield.scan({
+    // Scan with Koreshield
+    const scan = await Koreshield.scan({
       content: message,
       userId: req.user?.id,
     });
@@ -299,7 +299,7 @@ function useSecureChat() {
 type Model = 'gpt-4' | 'gpt-3.5-turbo' | 'gpt-4-turbo-preview';
 
 async function secureMultiModel(message: string, model: Model) {
-  const scan = await koreshield.scan({
+  const scan = await Koreshield.scan({
     content: message,
     metadata: { model },
   });
@@ -337,7 +337,7 @@ async function rateLimitedChat(userId: string, message: string) {
   }
 
   // Scan and chat
-  const scan = await koreshield.scan({ content: message, userId });
+  const scan = await Koreshield.scan({ content: message, userId });
   
   if (scan.threat_detected) {
     throw new Error('Threat detected');
@@ -357,7 +357,7 @@ async function rateLimitedChat(userId: string, message: string) {
 ```typescript
 async function secureBatch(messages: string[]) {
   // Scan all messages
-  const scans = await koreshield.batchScan({
+  const scans = await Koreshield.batchScan({
     items: messages.map((content, i) => ({
       id: `msg-${i}`,
       content,
@@ -395,7 +395,7 @@ async function robustChat(message: string) {
   try {
     // Scan with timeout
     const scan = await Promise.race([
-      koreshield.scan({ content: message }),
+      Koreshield.scan({ content: message }),
       new Promise((_, reject) => 
         setTimeout(() => reject(new Error('Scan timeout')), 5000)
       ),
@@ -414,7 +414,7 @@ async function robustChat(message: string) {
   } catch (error) {
     if (error.message === 'Scan timeout') {
       // Fail open - log and allow
-      console.warn('KoreShield timeout, proceeding without scan');
+      console.warn('Koreshield timeout, proceeding without scan');
     }
     
     // Fallback to OpenAI

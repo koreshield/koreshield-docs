@@ -47,15 +47,15 @@ Flooding with irrelevant content to push out important context.
 ### Pre-Retrieval Scanning
 
 ```typescript
-import { KoreShield } from 'koreshield-sdk';
+import { Koreshield } from 'Koreshield-sdk';
 
-const koreshield = new KoreShield({
-  apiKey: process.env.KORESHIELD_API_KEY,
+const Koreshield = new Koreshield({
+  apiKey: process.env.Koreshield_API_KEY,
 });
 
 async function secureQuery(userQuery: string) {
   // Scan user query first
-  const scan = await koreshield.scan({
+  const scan = await Koreshield.scan({
     content: userQuery,
     userId: 'user-123',
   });
@@ -75,7 +75,7 @@ async function secureQuery(userQuery: string) {
 async function scanRetrievedDocs(docs: string[]) {
   const scans = await Promise.all(
     docs.map(doc =>
-      koreshield.scan({
+      Koreshield.scan({
         content: doc,
         metadata: { source: 'vector_db' },
       })
@@ -105,7 +105,7 @@ const index = pinecone.index('docs');
 
 async function secureRAG(query: string) {
   // 1. Scan user query
-  const queryScan = await koreshield.scan({
+  const queryScan = await Koreshield.scan({
     content: query,
     sensitivity: 'high',
   });
@@ -184,12 +184,12 @@ const vectorStore = await PineconeStore.fromExistingIndex(
 class SecureRetriever {
   constructor(
     private vectorStore: PineconeStore,
-    private koreshield: KoreShield
+    private Koreshield: Koreshield
   ) {}
 
   async getRelevantDocuments(query: string) {
     // Scan query
-    const scan = await this.koreshield.scan({ content: query });
+    const scan = await this.Koreshield.scan({ content: query });
 
     if (scan.threat_detected) {
       throw new Error('Malicious query');
@@ -201,7 +201,7 @@ class SecureRetriever {
     // Scan each document
     const scans = await Promise.all(
       docs.map(doc =>
-        this.koreshield.scan({
+        this.Koreshield.scan({
           content: doc.pageContent,
           metadata: { docId: doc.metadata.id },
         })
@@ -215,7 +215,7 @@ class SecureRetriever {
 
 const chain = RetrievalQAChain.fromLLM(
   new ChatOpenAI({ modelName: 'gpt-4' }),
-  new SecureRetriever(vectorStore, koreshield)
+  new SecureRetriever(vectorStore, Koreshield)
 );
 ```
 
@@ -223,7 +223,7 @@ const chain = RetrievalQAChain.fromLLM(
 
 ```typescript
 async function secureIngest(documents: string[]) {
-  const scans = await koreshield.batchScan({
+  const scans = await Koreshield.batchScan({
     items: documents.map((content, i) => ({
       id: `doc-${i}`,
       content,
@@ -273,7 +273,7 @@ async function validateContext(context: string, maxLength: number = 4000) {
   }
 
   // Scan for threats
-  const scan = await koreshield.scan({
+  const scan = await Koreshield.scan({
     content: context,
     sensitivity: 'high',
   });
@@ -291,7 +291,7 @@ async function validateContext(context: string, maxLength: number = 4000) {
 ```typescript
 async function tenantRAG(tenantId: string, query: string) {
   // Scan with tenant context
-  const scan = await koreshield.scan({
+  const scan = await Koreshield.scan({
     content: query,
     userId: tenantId,
     metadata: { tenantId },
@@ -328,7 +328,7 @@ async function monitoredRAG(query: string, userId: string) {
 
   try {
     // Scan query
-    const scan = await koreshield.scan({
+    const scan = await Koreshield.scan({
       content: query,
       userId,
     });
@@ -378,7 +378,7 @@ async function monitoredRAG(query: string, userId: string) {
 ```typescript
 async function defensiveRAG(query: string) {
   // Layer 1: Query scanning
-  const queryScan = await koreshield.scan({
+  const queryScan = await Koreshield.scan({
     content: query,
     sensitivity: 'high',
   });

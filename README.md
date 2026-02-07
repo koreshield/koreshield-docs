@@ -1,10 +1,10 @@
-# KoreShield Documentation
+# Koreshield Documentation
 
-Official documentation for KoreShield - an open-source security platform protecting LLM applications from prompt injection attacks.
+Official documentation for Koreshield - an open-source security platform protecting LLM applications from prompt injection attacks.
 
 ## 📚 About
 
-This repository contains the complete documentation for KoreShield, built with Docusaurus. It covers:
+This repository contains the complete documentation for Koreshield, built with Docusaurus. It covers:
 
 - **Getting Started**: Installation and quick start guides
 - **Integrations**: Framework and platform integrations
@@ -70,9 +70,9 @@ Contributions to improve the documentation are welcome! Please:
 
 ## 🔗 Links
 
-- **Main Repository**: [github.com/koreshield/koreshield](https://github.com/koreshield/koreshield)
-- **Documentation Site**: [docs.koreshield.com](https://docs.koreshield.com)
-- **Discord Community**: [discord.gg/koreshield](https://discord.gg/koreshield)
+- **Main Repository**: [github.com/Koreshield/Koreshield](https://github.com/Koreshield/Koreshield)
+- **Documentation Site**: [docs.Koreshield.com](https://docs.Koreshield.com)
+- **Discord Community**: [discord.gg/Koreshield](https://discord.gg/Koreshield)
 
 ## 📄 License
 

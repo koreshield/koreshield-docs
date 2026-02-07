@@ -1,32 +1,32 @@
 ---
 title: LangChain Integration
-description: Secure your LangChain applications with KoreShield's threat detection
+description: Secure your LangChain applications with Koreshield's threat detection
 published: true
 ---
 
 # LangChain Integration
 
-Integrate KoreShield security directly into your LangChain pipelines for comprehensive LLM protection.
+Integrate Koreshield security directly into your LangChain pipelines for comprehensive LLM protection.
 
 ## Installation
 
 ```bash
-pip install koreshield-sdk langchain langchain-openai
+pip install Koreshield-sdk langchain langchain-openai
 ```
 
 ## Basic Integration
 
 ### Callback Handler
 
-Create a KoreShield callback handler:
+Create a Koreshield callback handler:
 
 ```python
 from langchain.callbacks.base import BaseCallbackHandler
-from koreshield_sdk import KoreShieldClient
+from Koreshield_sdk import KoreshieldClient
 
-class KoreShieldCallback(BaseCallbackHandler):
+class KoreshieldCallback(BaseCallbackHandler):
     def __init__(self, api_key: str, sensitivity: str = "medium"):
-        self.client = KoreShieldClient(api_key=api_key)
+        self.client = KoreshieldClient(api_key=api_key)
         self.sensitivity = sensitivity
     
     def on_llm_start(self, serialized: dict, prompts: list[str], **kwargs):
@@ -54,11 +54,11 @@ class KoreShieldCallback(BaseCallbackHandler):
 # Usage
 from langchain_openai import ChatOpenAI
 
-koreshield_callback = KoreShieldCallback(api_key="ks_prod_xxx")
+Koreshield_callback = KoreshieldCallback(api_key="ks_prod_xxx")
 
 llm = ChatOpenAI(
     model="gpt-4",
-    callbacks=[koreshield_callback]
+    callbacks=[Koreshield_callback]
 )
 
 # Prompts are automatically scanned
@@ -72,13 +72,13 @@ response = llm.invoke("What is the capital of France?")
 ```python
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
-from koreshield_sdk import KoreShieldClient
+from Koreshield_sdk import KoreshieldClient
 
-koreshield = KoreShieldClient(api_key="ks_prod_xxx")
+Koreshield = KoreshieldClient(api_key="ks_prod_xxx")
 
 def secure_chain(user_input: str):
     # Scan input first
-    scan_result = koreshield.scan(user_input)
+    scan_result = Koreshield.scan(user_input)
     
     if scan_result.is_threat:
         return {
@@ -106,9 +106,9 @@ result = secure_chain("How does photosynthesis work?")
 from langchain.chains import RetrievalQA
 from langchain_community.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
-from koreshield_sdk import KoreShieldClient
+from Koreshield_sdk import KoreshieldClient
 
-koreshield = KoreShieldClient(api_key="ks_prod_xxx")
+Koreshield = KoreshieldClient(api_key="ks_prod_xxx")
 
 # Load vector store
 embeddings = OpenAIEmbeddings()
@@ -117,7 +117,7 @@ vectorstore = FAISS.load_local("./vectorstore", embeddings)
 # Create secure RAG chain
 def secure_rag_query(query: str):
     # Scan query for injection attacks
-    scan_result = koreshield.scan(query, context="rag_query")
+    scan_result = Koreshield.scan(query, context="rag_query")
     
     if scan_result.is_threat:
         return {
@@ -153,7 +153,7 @@ from langchain import hub
 # Create tools
 def search_tool(query: str) -> str:
     # Scan tool input
-    result = koreshield.scan(query)
+    result = Koreshield.scan(query)
     if result.is_threat:
         return f"Security violation: {result.attack_types[0]}"
     return f"Search results for: {query}"
@@ -178,7 +178,7 @@ agent = create_openai_functions_agent(
 agent_executor = AgentExecutor(
     agent=agent,
     tools=tools,
-    callbacks=[koreshield_callback],
+    callbacks=[Koreshield_callback],
     verbose=True
 )
 
@@ -195,20 +195,20 @@ result = agent_executor.invoke({
 ```python
 from typing import Any, List, Optional
 from langchain.llms.base import LLM
-from koreshield_sdk import KoreShieldClient
+from Koreshield_sdk import KoreshieldClient
 
 class SecureLLM(LLM):
-    """LLM wrapper with KoreShield protection"""
+    """LLM wrapper with Koreshield protection"""
     
     llm: LLM
-    koreshield: KoreShieldClient
+    Koreshield: KoreshieldClient
     sensitivity: str = "medium"
     block_on_threat: bool = True
     
     def __init__(self, llm: LLM, api_key: str, **kwargs):
         super().__init__(**kwargs)
         self.llm = llm
-        self.koreshield = KoreShieldClient(api_key=api_key)
+        self.Koreshield = KoreshieldClient(api_key=api_key)
     
     def _call(
         self,
@@ -217,7 +217,7 @@ class SecureLLM(LLM):
         **kwargs: Any
     ) -> str:
         # Scan input
-        scan_result = self.koreshield.scan(
+        scan_result = self.Koreshield.scan(
             input=prompt,
             sensitivity=self.sensitivity
         )
@@ -261,7 +261,7 @@ class TenantAwareLLM(LLM):
     def __init__(self, llm: LLM, api_key: str):
         super().__init__()
         self.llm = llm
-        self.koreshield = KoreShieldClient(api_key=api_key)
+        self.Koreshield = KoreshieldClient(api_key=api_key)
         self.tenant_policies = {
             "free": {"sensitivity": "high", "max_requests": 100},
             "pro": {"sensitivity": "medium", "max_requests": 10000},
@@ -272,7 +272,7 @@ class TenantAwareLLM(LLM):
         policy = self.tenant_policies.get(tenant_id, self.tenant_policies["free"])
         
         # Apply tenant-specific security
-        scan_result = self.koreshield.scan(
+        scan_result = self.Koreshield.scan(
             input=prompt,
             sensitivity=policy["sensitivity"],
             metadata={"tenant_id": tenant_id}
@@ -291,12 +291,12 @@ from langchain_core.runnables import RunnableLambda
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
-koreshield = KoreShieldClient(api_key="ks_prod_xxx")
+Koreshield = KoreshieldClient(api_key="ks_prod_xxx")
 
 # Security check runnable
 def security_check(input_dict):
     message = input_dict.get("question", "")
-    result = koreshield.scan(message)
+    result = Koreshield.scan(message)
     
     if result.is_threat:
         raise ValueError(f"Security threat: {result.attack_types[0]}")
@@ -321,11 +321,11 @@ response = secure_chain.invoke({"question": "What is machine learning?"})
 
 ```python
 import asyncio
-from koreshield_sdk import AsyncKoreShieldClient
+from Koreshield_sdk import AsyncKoreshieldClient
 
 class AsyncSecureCallback(BaseCallbackHandler):
     def __init__(self, api_key: str):
-        self.client = AsyncKoreShieldClient(api_key=api_key)
+        self.client = AsyncKoreshieldClient(api_key=api_key)
     
     async def on_llm_start(self, serialized: dict, prompts: list[str], **kwargs):
         for prompt in prompts:
@@ -353,7 +353,7 @@ from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 class SecureStreamingCallback(StreamingStdOutCallbackHandler):
     def __init__(self, api_key: str):
         super().__init__()
-        self.koreshield = KoreShieldClient(api_key=api_key)
+        self.Koreshield = KoreshieldClient(api_key=api_key)
         self.buffer = ""
     
     def on_llm_new_token(self, token: str, **kwargs):
@@ -362,7 +362,7 @@ class SecureStreamingCallback(StreamingStdOutCallbackHandler):
         
         # Check for threats in output (optional)
         if len(self.buffer) > 100:
-            result = self.koreshield.scan(self.buffer[-100:])
+            result = self.Koreshield.scan(self.buffer[-100:])
             if result.is_threat:
                 raise ValueError("Threat detected in output")
         
@@ -385,13 +385,13 @@ from langchain.memory import ConversationBufferMemory
 class SecureMemory(ConversationBufferMemory):
     def __init__(self, api_key: str, **kwargs):
         super().__init__(**kwargs)
-        self.koreshield = KoreShieldClient(api_key=api_key)
+        self.Koreshield = KoreshieldClient(api_key=api_key)
     
     def save_context(self, inputs: dict, outputs: dict):
         # Scan before saving to memory
         for value in inputs.values():
             if isinstance(value, str):
-                result = self.koreshield.scan(value)
+                result = self.Koreshield.scan(value)
                 if result.is_threat:
                     # Don't save malicious content to memory
                     return
@@ -415,8 +415,8 @@ import pytest
 from unittest.mock import Mock, patch
 
 @pytest.fixture
-def mock_koreshield():
-    with patch('koreshield_sdk.KoreShieldClient') as mock:
+def mock_Koreshield():
+    with patch('Koreshield_sdk.KoreshieldClient') as mock:
         client = mock.return_value
         client.scan.return_value = Mock(
             is_threat=False,
@@ -425,21 +425,21 @@ def mock_koreshield():
         )
         yield client
 
-def test_secure_chain(mock_koreshield):
-    callback = KoreShieldCallback(api_key="test_key")
+def test_secure_chain(mock_Koreshield):
+    callback = KoreshieldCallback(api_key="test_key")
     llm = ChatOpenAI(callbacks=[callback])
     
     response = llm.invoke("Safe question")
     assert response is not None
 
-def test_threat_detection(mock_koreshield):
-    mock_koreshield.scan.return_value = Mock(
+def test_threat_detection(mock_Koreshield):
+    mock_Koreshield.scan.return_value = Mock(
         is_threat=True,
         confidence=0.95,
         attack_types=["prompt_injection"]
     )
     
-    callback = KoreShieldCallback(api_key="test_key")
+    callback = KoreshieldCallback(api_key="test_key")
     llm = ChatOpenAI(callbacks=[callback])
     
     with pytest.raises(ValueError, match="Security threat"):
@@ -452,16 +452,16 @@ def test_threat_detection(mock_koreshield):
 
 ```python
 # 1. Input validation
-user_input_scan = koreshield.scan(user_input)
+user_input_scan = Koreshield.scan(user_input)
 
 # 2. Chain input validation  
-chain_input_scan = koreshield.scan(formatted_prompt)
+chain_input_scan = Koreshield.scan(formatted_prompt)
 
 # 3. Tool input validation
-tool_input_scan = koreshield.scan(tool_args)
+tool_input_scan = Koreshield.scan(tool_args)
 
 # 4. Optional: Output validation
-output_scan = koreshield.scan(llm_response)
+output_scan = Koreshield.scan(llm_response)
 ```
 
 ### Handle Errors Gracefully
@@ -487,6 +487,6 @@ def safe_invoke(chain, input_data):
 
 ## Support
 
-- **Discord**: [discord.gg/koreshield](https://discord.gg/koreshield)
-- **GitHub**: [github.com/koreshield/koreshield](https://github.com/koreshield/koreshield)
-- **Email**: support@koreshield.com
+- **Discord**: [discord.gg/Koreshield](https://discord.gg/Koreshield)
+- **GitHub**: [github.com/Koreshield/Koreshield](https://github.com/Koreshield/Koreshield)
+- **Email**: support@Koreshield.com
