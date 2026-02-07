@@ -18,7 +18,7 @@
   margin-bottom: 1rem;
 }
 
-.heroBanner .hero__subtitle {
+.heroBanner :global(.hero__subtitle) {
   font-size: 1.25rem;
   margin-bottom: 2rem;
   opacity: 0.95;
@@ -77,19 +77,19 @@
   color: var(--ifm-color-emphasis-700);
 }
 
-.quickstart .code-example {
+.codeExample {
   background-color: #1e1e1e;
   border-radius: 8px;
   padding: 1.5rem;
   overflow-x: auto;
 }
 
-.quickstart .code-example pre {
+.codeExample pre {
   margin: 0;
   background: transparent;
 }
 
-.quickstart .code-example code {
+.codeExample code {
   color: #d4d4d4;
   font-family: 'Fira Code', monospace;
   font-size: 0.9rem;
@@ -113,23 +113,23 @@
   font-size: 1.35rem;
 }
 
-.usecases .card {
+.usecases :global(.card) {
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 8px;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.usecases .card:hover {
+.usecases :global(.card):hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 @media screen and (max-width: 996px) {
-  .quickstart .row {
+  .quickstart :global(.row) {
     flex-direction: column-reverse;
   }
   
-  .quickstart .col {
+  .quickstart :global(.col) {
     max-width: 100% !important;
     margin-bottom: 2rem;
   }

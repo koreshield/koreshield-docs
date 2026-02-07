@@ -89,7 +89,7 @@ function QuickStartSection() {
             </div>
           </div>
           <div className="col col--6">
-            <div className="code-example">
+            <div className={styles.codeExample}>
               <pre>
                 <code>{`# Deploy with Docker
 docker run -p 8000:8000 \\
