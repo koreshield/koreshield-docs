@@ -75,6 +75,11 @@ pre code,
   border: 1px solid #333;
 }
 
+/* Hero banner dark mode */
+[data-theme='dark'] .heroBanner {
+  background: linear-gradient(135deg, #020617 0%, #0e7490 100%) !important;
+}
+
 /* GitHub icon in navbar */
 .header-github-link:hover {
   opacity: 0.6;

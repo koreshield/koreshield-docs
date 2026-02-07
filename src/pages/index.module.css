@@ -4,15 +4,33 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
+  padding: 5rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, #0f172a 0%, #0891b2 100%);
+  color: white;
+}
+
+.heroBanner h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.heroBanner .hero__subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  opacity: 0.95;
 }
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 2rem;
+    padding: 3rem 1rem;
+  }
+  
+  .heroBanner h1 {
+    font-size: 2rem;
   }
 }
 
@@ -20,4 +38,99 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Feature Section */
+.features {
+  padding: 5rem 0;
+  background-color: var(--ifm-background-surface-color);
+}
+
+.features h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.features p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* Quick Start Section */
+.quickstart {
+  padding: 5rem 0;
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.quickstart h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.quickstart p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.quickstart .code-example {
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+.quickstart .code-example pre {
+  margin: 0;
+  background: transparent;
+}
+
+.quickstart .code-example code {
+  color: #d4d4d4;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Use Cases Section */
+.usecases {
+  padding: 5rem 0;
+  background-color: var(--ifm-background-surface-color);
+}
+
+.usecases h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.usecases h3 {
+  margin-bottom: 1rem;
+  font-size: 1.35rem;
+}
+
+.usecases .card {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.usecases .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 996px) {
+  .quickstart .row {
+    flex-direction: column-reverse;
+  }
+  
+  .quickstart .col {
+    max-width: 100% !important;
+    margin-bottom: 2rem;
+  }
 }
