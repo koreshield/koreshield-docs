@@ -78,7 +78,7 @@ function QuickStartSection() {
       <div className="container">
         <div className="row">
           <div className="col col--6">
-            <h2>Start Securing Your AI in Minutes</h2>
+            <h2>Start Securing Your Application in Minutes</h2>
             <p>Deploy Koreshield as a standalone proxy or integrate our SDK directly into your application.</p>
             <div style={{ marginTop: '2rem' }}>
               <Link

@@ -87,6 +87,95 @@ pre code,
   border: 1px solid #333;
 }
 
+/* Footer spacing and icons */
+.footer {
+  padding: 1.5rem 0;
+}
+
+.footer__links {
+  margin-bottom: 0.75rem;
+}
+
+.footer__col {
+  margin-bottom: 0.75rem;
+}
+
+.footer__bottom {
+  margin-top: 0.75rem;
+}
+
+.footer-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: #0f172a;
+  opacity: 1;
+  transition: opacity 150ms ease;
+}
+
+.footer-icon-link:hover {
+  opacity: 1;
+}
+
+.footer-icon-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+[data-theme='dark'] .footer-icon-link {
+  color: #e2e8f0;
+}
+
+/* Hide heading hash links */
+.hash-link {
+  display: none !important;
+}
+
+/* Table readability */
+.markdown table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #f7f7fb;
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.markdown table th,
+.markdown table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #d0d0d0;
+  vertical-align: top;
+}
+
+.markdown table thead th {
+  background-color: #e4e4ea;
+  font-weight: 600;
+  color: #111827;
+}
+
+.markdown table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+[data-theme='dark'] .markdown table {
+  background-color: #202032;
+  border-color: #2c2c40;
+}
+
+[data-theme='dark'] .markdown table th,
+[data-theme='dark'] .markdown table td {
+  border-bottom: 1px solid #2c2c40;
+}
+
+[data-theme='dark'] .markdown table thead th {
+  background-color: #26263a;
+  color: #f3f4f6;
+}
+
 
 
 /* GitHub icon in navbar */

@@ -116,6 +116,11 @@ const config: Config = {
           position: 'left',
         },
         {
+          to: '/features/rag-defense',
+          label: 'Features',
+          position: 'left',
+        },
+        {
           to: '/api/',
           label: 'API Reference',
           position: 'right',
@@ -179,19 +184,25 @@ const config: Config = {
           ],
         },
         {
+          title: 'Features',
+          items: [
+            {
+              label: 'RAG Defense Engine',
+              to: '/features/rag-defense',
+            },
+          ],
+        },
+        {
           title: 'Community',
           items: [
             {
-              label: 'GitHub',
-              href: 'https://github.com/Koreshield/Koreshield',
+              html: '<a class="footer-icon-link" href="https://github.com/Koreshield/Koreshield" aria-label="GitHub" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>',
             },
             {
-              label: 'Discord',
-              href: 'https://discord.gg/Koreshield',
+              html: '<a class="footer-icon-link" href="https://discord.gg/Koreshield" aria-label="Discord" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.317 4.369a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.078.037 13.38 13.38 0 0 0-.596 1.224 18.563 18.563 0 0 0-5.487 0 13.38 13.38 0 0 0-.596-1.224.074.074 0 0 0-.078-.037 19.736 19.736 0 0 0-4.885 1.515.069.069 0 0 0-.032.027C.533 9.054-.32 13.579.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.04.077.077 0 0 0 .084-.027 14.28 14.28 0 0 0 1.226-1.994.076.076 0 0 0-.041-.105 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.127c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.009c.12.1.246.198.372.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.891.076.076 0 0 0-.04.106c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.864 19.864 0 0 0 6.002-3.04.077.077 0 0 0 .031-.055c.5-5.177-.838-9.673-3.548-13.66a.061.061 0 0 0-.031-.03Zm-13.67 10.91c-1.183 0-2.157-1.085-2.157-2.419 0-1.334.955-2.419 2.157-2.419 1.21 0 2.175 1.094 2.157 2.419 0 1.334-.955 2.419-2.157 2.419Zm7.974 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.334.955-2.419 2.157-2.419 1.21 0 2.175 1.094 2.157 2.419 0 1.334-.946 2.419-2.157 2.419Z"/></svg></a>',
             },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/Koreshield',
+              html: '<a class="footer-icon-link" href="https://twitter.com/Koreshield" aria-label="Twitter" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.658l-5.214-6.817-5.96 6.817H1.687l7.73-8.835L1.25 2.25h6.827l4.713 6.231 5.454-6.231Zm-1.161 17.52h1.833L7.083 4.126H5.117L17.083 19.77Z"/></svg></a>',
             },
             {
               label: 'Contributing',
