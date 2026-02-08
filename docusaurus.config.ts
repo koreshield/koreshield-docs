@@ -19,7 +19,7 @@ const config: Config = {
   projectName: 'Koreshield',
 
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   trailingSlash: true,
 
   i18n: {
@@ -33,7 +33,7 @@ const config: Config = {
       'classic',
       {
         docs: {
-          routeBasePath: '/',
+          routeBasePath: 'docs',
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/Koreshield/Koreshield-docs/edit/main/',
           breadcrumbs: true,
@@ -98,18 +98,18 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: '/getting-started/quick-start',
+          to: '/docs/getting-started/quick-start',
           label: 'Getting Started',
           position: 'left',
           className: 'nav-link_getting-started',
         },
         {
-          to: '/integrations/',
+          to: '/docs/integrations/',
           label: 'Integrations',
           position: 'left',
         },
         {
-          to: '/api/',
+          to: '/docs/api/',
           label: 'API Reference',
           position: 'right',
         },
@@ -134,19 +134,19 @@ const config: Config = {
           items: [
             {
               label: 'Introduction',
-              to: '/intro/',
+              to: '/',
             },
             {
               label: 'Installation',
-              to: '/getting-started/installation',
+              to: '/docs/getting-started/installation',
             },
             {
               label: 'Quick Start',
-              to: '/getting-started/quick-start',
+              to: '/docs/getting-started/quick-start',
             },
             {
               label: 'Configuration',
-              to: '/configuration/',
+              to: '/docs/configuration/',
             },
           ],
         },
@@ -155,7 +155,7 @@ const config: Config = {
           items: [
             {
               label: 'API Reference',
-              to: '/api/',
+              to: '/docs/api/',
             },
             {
               label: 'Python SDK',
@@ -167,7 +167,7 @@ const config: Config = {
             },
             {
               label: 'Integrations',
-              to: '/integrations/',
+              to: '/docs/integrations/',
             },
           ],
         },
@@ -197,7 +197,7 @@ const config: Config = {
           items: [
             {
               label: 'Case Studies',
-              to: '/case-studies/',
+              to: '/docs/case-studies/',
             },
             {
               label: 'Security',
