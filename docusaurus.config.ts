@@ -19,7 +19,7 @@ const config: Config = {
   projectName: 'Koreshield',
 
 
-  onBrokenLinks: 'warn',
+  onBrokenLinks: 'throw',
   trailingSlash: true,
 
   i18n: {
