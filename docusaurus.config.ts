@@ -40,17 +40,6 @@ const config: Config = {
           showLastUpdateAuthor: false,
           showLastUpdateTime: false,
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          editUrl: 'https://github.com/Koreshield/Koreshield-docs/edit/main/',
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
         theme: {
           customCss: './src/css/custom.scss',
         },
@@ -91,11 +80,6 @@ const config: Config = {
           to: 'https://Koreshield.com/',
           position: 'left',
           label: 'Product',
-        },
-        {
-          to: 'https://blog.Koreshield.com/',
-          label: 'Blog',
-          position: 'left',
         },
         {
           to: '/docs/getting-started/quick-start',
