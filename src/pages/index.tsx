@@ -41,7 +41,7 @@ function FeatureSection() {
         <div className="row">
           <div className="col col--4">
             <div className="text--center padding-horiz--md">
-              <h3>🛡️ Real-time Protection</h3>
+              <h3>Real-time Protection</h3>
               <p>
                 Detect and block prompt injection attacks before they reach your LLM.
                 Multi-layered defense with heuristic and AI-powered detection.
@@ -50,7 +50,7 @@ function FeatureSection() {
           </div>
           <div className="col col--4">
             <div className="text--center padding-horiz--md">
-              <h3>⚡ Zero-friction Integration</h3>
+              <h3>Zero-friction Integration</h3>
               <p>
                 Drop-in proxy or SDK integration. Works with OpenAI, Anthropic, DeepSeek,
                 and any OpenAI-compatible API. 5-minute setup.
@@ -59,7 +59,7 @@ function FeatureSection() {
           </div>
           <div className="col col--4">
             <div className="text--center padding-horiz--md">
-              <h3>🔍 Complete Visibility</h3>
+              <h3>Complete Visibility</h3>
               <p>
                 Comprehensive audit logs and security analytics. Track threats,
                 monitor usage, and maintain compliance effortlessly.
@@ -116,7 +116,7 @@ function UseCasesSection() {
         <div className="row">
           <div className="col col--6">
             <div className="card" style={{ padding: '1.5rem', height: '100%' }}>
-              <h3>🤖 AI Assistants & Chatbots</h3>
+              <h3>AI Assistants & Chatbots</h3>
               <p>
                 Protect customer-facing AI agents from manipulation. Prevent data leakage
                 and ensure your AI stays on-brand and compliant.
@@ -125,7 +125,7 @@ function UseCasesSection() {
           </div>
           <div className="col col--6">
             <div className="card" style={{ padding: '1.5rem', height: '100%' }}>
-              <h3>📚 RAG Systems</h3>
+              <h3>RAG Systems</h3>
               <p>
                 Secure retrieval-augmented generation pipelines. Detect context poisoning
                 and prevent malicious content in your knowledge base from compromising responses.
@@ -136,7 +136,7 @@ function UseCasesSection() {
         <div className="row" style={{ marginTop: '1.5rem' }}>
           <div className="col col--6">
             <div className="card" style={{ padding: '1.5rem', height: '100%' }}>
-              <h3>🔨 Agent Frameworks</h3>
+              <h3>Agent Frameworks</h3>
               <p>
                 Protect autonomous agents with tool access. Monitor and validate agent
                 decisions to prevent unauthorized actions and data exposure.
@@ -145,7 +145,7 @@ function UseCasesSection() {
           </div>
           <div className="col col--6">
             <div className="card" style={{ padding: '1.5rem', height: '100%' }}>
-              <h3>🏢 Enterprise Applications</h3>
+              <h3>Enterprise Applications</h3>
               <p>
                 Meet compliance requirements with comprehensive audit trails. SOC 2 ready
                 with policy enforcement and detailed security reporting.

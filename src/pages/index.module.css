@@ -8,8 +8,8 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #0f172a 0%, #0891b2 100%);
-  color: white;
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-color-content);
 }
 
 .heroBanner h1 {
@@ -45,7 +45,7 @@
 /* Feature Section */
 .features {
   padding: 5rem 0;
-  background-color: var(--ifm-background-surface-color);
+  background-color: var(--ifm-background-color);
 }
 
 .features h3 {
@@ -62,7 +62,7 @@
 /* Quick Start Section */
 .quickstart {
   padding: 5rem 0;
-  background-color: var(--ifm-color-emphasis-100);
+  background-color: var(--ifm-background-color);
 }
 
 .quickstart h2 {
@@ -99,7 +99,7 @@
 /* Use Cases Section */
 .usecases {
   padding: 5rem 0;
-  background-color: var(--ifm-background-surface-color);
+  background-color: var(--ifm-background-color);
 }
 
 .usecases h2 {
