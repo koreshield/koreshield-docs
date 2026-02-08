@@ -40,23 +40,12 @@ const config: Config = {
       'classic',
       {
         docs: {
-          routeBasePath: '/',
+          routeBasePath: 'docs',
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/Koreshield/Koreshield-docs/edit/main/',
           breadcrumbs: true,
           showLastUpdateAuthor: false,
           showLastUpdateTime: false,
-        },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          editUrl: 'https://github.com/Koreshield/Koreshield-docs/edit/main/',
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
         },
         theme: {
           customCss: './src/css/custom.scss',
@@ -100,28 +89,23 @@ const config: Config = {
           label: 'Product',
         },
         {
-          to: 'https://blog.Koreshield.com/',
-          label: 'Blog',
-          position: 'left',
-        },
-        {
-          to: '/getting-started/quick-start',
+          to: '/docs/getting-started/quick-start',
           label: 'Getting Started',
           position: 'left',
           className: 'nav-link_getting-started',
         },
         {
-          to: '/integrations/',
+          to: '/docs/integrations/',
           label: 'Integrations',
           position: 'left',
         },
         {
-          to: '/features/rag-defense',
+          to: '/docs/features/rag-defense',
           label: 'Features',
           position: 'left',
         },
         {
-          to: '/api/',
+          to: '/docs/api/',
           label: 'API Reference',
           position: 'right',
         },
@@ -146,19 +130,19 @@ const config: Config = {
           items: [
             {
               label: 'Introduction',
-              to: '/intro/',
+              to: '/',
             },
             {
               label: 'Installation',
-              to: '/getting-started/installation',
+              to: '/docs/getting-started/installation',
             },
             {
               label: 'Quick Start',
-              to: '/getting-started/quick-start',
+              to: '/docs/getting-started/quick-start',
             },
             {
               label: 'Configuration',
-              to: '/configuration/',
+              to: '/docs/configuration/',
             },
           ],
         },
@@ -167,7 +151,7 @@ const config: Config = {
           items: [
             {
               label: 'API Reference',
-              to: '/api/',
+              to: '/docs/api/',
             },
             {
               label: 'Python SDK',
@@ -179,7 +163,7 @@ const config: Config = {
             },
             {
               label: 'Integrations',
-              to: '/integrations/',
+              to: '/docs/integrations/',
             },
           ],
         },
@@ -188,7 +172,7 @@ const config: Config = {
           items: [
             {
               label: 'RAG Defense Engine',
-              to: '/features/rag-defense',
+              to: '/docs/features/rag-defense',
             },
           ],
         },
@@ -215,7 +199,7 @@ const config: Config = {
           items: [
             {
               label: 'Case Studies',
-              to: '/case-studies/',
+              to: '/docs/case-studies/',
             },
             {
               label: 'Security',
