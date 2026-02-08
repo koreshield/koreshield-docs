@@ -8,8 +8,8 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #0f172a 0%, #0891b2 100%);
-  color: white;
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-color-content);
 }
 
 .heroBanner h1 {
@@ -45,7 +45,7 @@
 /* Feature Section */
 .features {
   padding: 5rem 0;
-  background-color: var(--ifm-background-surface-color);
+  background-color: var(--ifm-background-color);
 }
 
 .features h3 {
@@ -62,7 +62,7 @@
 /* Quick Start Section */
 .quickstart {
   padding: 5rem 0;
-  background-color: var(--ifm-color-emphasis-100);
+  background-color: var(--ifm-background-color);
 }
 
 .quickstart h2 {
@@ -99,7 +99,7 @@
 /* Use Cases Section */
 .usecases {
   padding: 5rem 0;
-  background-color: var(--ifm-background-surface-color);
+  background-color: var(--ifm-background-color);
 }
 
 .usecases h2 {
@@ -113,15 +113,30 @@
   font-size: 1.35rem;
 }
 
-.usecases :global(.card) {
-  border: 1px solid var(--ifm-color-emphasis-300);
-  border-radius: 8px;
-  transition: transform 0.2s, box-shadow 0.2s;
+.usecaseGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem 3rem;
 }
 
-.usecases :global(.card):hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+.usecaseItem {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.usecaseItem h3 {
+  margin-bottom: 0.75rem;
+}
+
+.usecaseItem p {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+}
+
+@media screen and (max-width: 996px) {
+  .usecaseGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media screen and (max-width: 996px) {

@@ -7,7 +7,7 @@ slug: /getting-started/quick-start
 
 # Introduction
 
-**Koreshield** is an enterprise-grade security middleware designed to protect GenAI applications from prompt injection, data exfiltration, and operational abuse. It functions as an intelligent firewall between your application and LLM providers (e.g., OpenAI, Anthropic, DeepSeek).
+**Koreshield** is an enterprise-grade security middleware designed to protect LLM applications from prompt injection, data exfiltration, and operational abuse. It functions as an intelligent firewall between your application and LLM providers (e.g., OpenAI, Anthropic, Gemini ).
 
 :::info Kore Value
 Koreshield ensures that your LLM applications remain secure, compliant, and reliable by sanitizing inputs and validating outputs in real-time.
@@ -28,19 +28,19 @@ Koreshield operates as a **transparent proxy**. It intercepts API requests, perf
 
 
 
-### 🛡️ Defense-in-Depth
+### Defense-in-Depth
 
 - **Heuristic Analysis**: Detects known attack patterns and jailbreak attempts.
 - **LLM-based Evaluation**: Uses specialized small models to identify semantic threats.
 - **RAG Security**: Scans retrieved documents for hidden instructions ("context poisoning").
 
-### ⚡ Performance First
+### Performance First
 
 - **Sub-millisecond Latency**: Optimized Go/Python engine for minimal overhead.
 - **Streaming Support**: Full support for Server-Sent Events (SSE) and token streaming.
 - **High Throughput**: Horizontally scalable architecture designed for high-volume workloads.
 
-### 🔌 Universal Compatibility
+### Universal Compatibility
 
 - **Provider Agnostic**: Unified API for OpenAI, Anthropic, DeepSeek, and local models.
 - **SDK Support**: Native clients for Python and TypeScript/JavaScript.

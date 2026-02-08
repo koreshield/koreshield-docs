@@ -15,17 +15,22 @@
 /* You can override the default Infima variables here. */
 :root {
   /* Primary color - Koreshield brand color */
-  --ifm-color-primary: #6366f1;
-  --ifm-color-primary-dark: #4f46e5;
-  --ifm-color-primary-darker: #4338ca;
-  --ifm-color-primary-darkest: #3730a3;
-  --ifm-color-primary-light: #818cf8;
-  --ifm-color-primary-lighter: #a5b4fc;
-  --ifm-color-primary-lightest: #c7d2fe;
+  --ifm-color-primary: #111827;
+  --ifm-color-primary-dark: #0f172a;
+  --ifm-color-primary-darker: #0b1220;
+  --ifm-color-primary-darkest: #05070c;
+  --ifm-color-primary-light: #1f2937;
+  --ifm-color-primary-lighter: #374151;
+  --ifm-color-primary-lightest: #4b5563;
   
   /* Font settings */
   --ifm-code-font-size: 95%;
-  --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --ifm-font-size-base: 16px;
+  --ifm-font-weight-base: 400;
+  --ifm-heading-font-weight: 600;
+  --ifm-font-weight-semibold: 600;
+  --ifm-font-family-base: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --ifm-heading-font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --ifm-font-family-monospace: 'Fira Code', 'Courier New', Courier, monospace;
   
   /* Spacing */
@@ -37,6 +42,12 @@
   --ifm-navbar-padding-horizontal: 1rem;
   --ifm-navbar-padding-vertical: 0.5rem;
   
+  /* Backgrounds */
+  --ifm-background-color: #f0f0f5;
+  --ifm-background-surface-color: #f0f0f5;
+  --ifm-navbar-background-color: #f0f0f5;
+  --ifm-footer-background-color: #f0f0f5;
+
   /* Code blocks */
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
@@ -55,17 +66,18 @@ pre code,
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #818cf8;
-  --ifm-color-primary-dark: #6366f1;
-  --ifm-color-primary-darker: #4f46e5;
-  --ifm-color-primary-darkest: #4338ca;
-  --ifm-color-primary-light: #a5b4fc;
-  --ifm-color-primary-lighter: #c7d2fe;
-  --ifm-color-primary-lightest: #e0e7ff;
+  --ifm-color-primary: #f3f4f6;
+  --ifm-color-primary-dark: #e5e7eb;
+  --ifm-color-primary-darker: #d1d5db;
+  --ifm-color-primary-darkest: #9ca3af;
+  --ifm-color-primary-light: #f9fafb;
+  --ifm-color-primary-lighter: #ffffff;
+  --ifm-color-primary-lightest: #ffffff;
   
-  --ifm-background-color: #1a1a1a;
-  --ifm-navbar-background-color: #1f1f1f;
-  --ifm-footer-background-color: #1f1f1f;
+  --ifm-background-color: #1a1a26;
+  --ifm-background-surface-color: #1a1a26;
+  --ifm-navbar-background-color: #1a1a26;
+  --ifm-footer-background-color: #1a1a26;
   
   --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
 }
@@ -75,10 +87,96 @@ pre code,
   border: 1px solid #333;
 }
 
-/* Hero banner dark mode */
-[data-theme='dark'] [class*='heroBanner'] {
-  background: linear-gradient(135deg, #020617 0%, #0e7490 100%) !important;
+/* Footer spacing and icons */
+.footer {
+  padding: 1.5rem 0;
 }
+
+.footer__links {
+  margin-bottom: 0.75rem;
+}
+
+.footer__col {
+  margin-bottom: 0.75rem;
+}
+
+.footer__bottom {
+  margin-top: 0.75rem;
+}
+
+.footer-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: #0f172a;
+  opacity: 1;
+  transition: opacity 150ms ease;
+}
+
+.footer-icon-link:hover {
+  opacity: 1;
+}
+
+.footer-icon-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+[data-theme='dark'] .footer-icon-link {
+  color: #e2e8f0;
+}
+
+/* Hide heading hash links */
+.hash-link {
+  display: none !important;
+}
+
+/* Table readability */
+.markdown table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #f7f7fb;
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.markdown table th,
+.markdown table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #d0d0d0;
+  vertical-align: top;
+}
+
+.markdown table thead th {
+  background-color: #e4e4ea;
+  font-weight: 600;
+  color: #111827;
+}
+
+.markdown table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+[data-theme='dark'] .markdown table {
+  background-color: #202032;
+  border-color: #2c2c40;
+}
+
+[data-theme='dark'] .markdown table th,
+[data-theme='dark'] .markdown table td {
+  border-bottom: 1px solid #2c2c40;
+}
+
+[data-theme='dark'] .markdown table thead th {
+  background-color: #26263a;
+  color: #f3f4f6;
+}
+
+
 
 /* GitHub icon in navbar */
 .header-github-link:hover {

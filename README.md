@@ -2,7 +2,7 @@
 
 Official documentation for Koreshield - an open-source security platform protecting LLM applications from prompt injection attacks.
 
-## 📚 About
+## About
 
 This repository contains the complete documentation for Koreshield, built with Docusaurus. It covers:
 
