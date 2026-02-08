@@ -113,15 +113,30 @@
   font-size: 1.35rem;
 }
 
-.usecases :global(.card) {
-  border: 1px solid var(--ifm-color-emphasis-300);
-  border-radius: 8px;
-  transition: transform 0.2s, box-shadow 0.2s;
+.usecaseGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem 3rem;
 }
 
-.usecases :global(.card):hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+.usecaseItem {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.usecaseItem h3 {
+  margin-bottom: 0.75rem;
+}
+
+.usecaseItem p {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+}
+
+@media screen and (max-width: 996px) {
+  .usecaseGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media screen and (max-width: 996px) {

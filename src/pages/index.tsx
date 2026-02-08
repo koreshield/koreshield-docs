@@ -113,44 +113,34 @@ function UseCasesSection() {
     <section className={styles.usecases}>
       <div className="container">
         <h2 className="text--center" style={{ marginBottom: '3rem' }}>Built for Modern AI Applications</h2>
-        <div className="row">
-          <div className="col col--6">
-            <div className="card" style={{ padding: '1.5rem', height: '100%' }}>
-              <h3>AI Assistants & Chatbots</h3>
-              <p>
-                Protect customer-facing AI agents from manipulation. Prevent data leakage
-                and ensure your AI stays on-brand and compliant.
-              </p>
-            </div>
+        <div className={styles.usecaseGrid}>
+          <div className={styles.usecaseItem}>
+            <h3>AI Assistants & Chatbots</h3>
+            <p>
+              Protect customer-facing AI agents from manipulation. Prevent data leakage
+              and ensure your AI stays on-brand and compliant.
+            </p>
           </div>
-          <div className="col col--6">
-            <div className="card" style={{ padding: '1.5rem', height: '100%' }}>
-              <h3>RAG Systems</h3>
-              <p>
-                Secure retrieval-augmented generation pipelines. Detect context poisoning
-                and prevent malicious content in your knowledge base from compromising responses.
-              </p>
-            </div>
+          <div className={styles.usecaseItem}>
+            <h3>RAG Systems</h3>
+            <p>
+              Secure retrieval-augmented generation pipelines. Detect context poisoning
+              and prevent malicious content in your knowledge base from compromising responses.
+            </p>
           </div>
-        </div>
-        <div className="row" style={{ marginTop: '1.5rem' }}>
-          <div className="col col--6">
-            <div className="card" style={{ padding: '1.5rem', height: '100%' }}>
-              <h3>Agent Frameworks</h3>
-              <p>
-                Protect autonomous agents with tool access. Monitor and validate agent
-                decisions to prevent unauthorized actions and data exposure.
-              </p>
-            </div>
+          <div className={styles.usecaseItem}>
+            <h3>Agent Frameworks</h3>
+            <p>
+              Protect autonomous agents with tool access. Monitor and validate agent
+              decisions to prevent unauthorized actions and data exposure.
+            </p>
           </div>
-          <div className="col col--6">
-            <div className="card" style={{ padding: '1.5rem', height: '100%' }}>
-              <h3>Enterprise Applications</h3>
-              <p>
-                Meet compliance requirements with comprehensive audit trails. SOC 2 ready
-                with policy enforcement and detailed security reporting.
-              </p>
-            </div>
+          <div className={styles.usecaseItem}>
+            <h3>Enterprise Applications</h3>
+            <p>
+              Meet compliance requirements with comprehensive audit trails. SOC 2 ready
+              with policy enforcement and detailed security reporting.
+            </p>
           </div>
         </div>
       </div>
