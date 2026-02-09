@@ -3,7 +3,7 @@
   "position": 2,
   "collapsed": false,
   "link": {
-    "type": "generated-index",
-    "description": "Learn how to integrate Koreshield with popular frameworks, platforms, and deployment options."
+    "type": "doc",
+    "id": "integrations/index"
   }
 }
