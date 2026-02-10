@@ -15,13 +15,54 @@
   &__item {
     &--search {
       .DocSearch-Button {
-        border-radius: 6px;
-        background-color: var(--bg-tertiary);
+        border-radius: 8px;
+        background-color: #ffffff;
+        border: 1px solid var(--ifm-color-primary);
+        color: var(--ifm-color-primary);
+        box-shadow: 0 1px 2px rgba(17, 24, 39, 0.12);
         
         &:hover {
-          background-color: var(--color-gray-16);
-          box-shadow: none;
+          background-color: var(--ifm-color-primary-lightest);
+          box-shadow: 0 2px 6px rgba(17, 24, 39, 0.16);
         }
+
+        &:active {
+          transform: translateY(1px);
+        }
+      }
+
+      .DocSearch-Button,
+      .navbar__search-input {
+        width: 240px;
+        min-width: 240px;
+        padding: 0 12px;
+        justify-content: space-between;
+      }
+
+      .DocSearch-Button-Placeholder {
+        display: inline;
+        color: #0b1220;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        font-size: 0.95rem;
+      }
+
+      .DocSearch-Button-Key {
+        display: inline-flex;
+        color: #0b1220;
+        font-weight: 800;
+        background-color: #ffffff;
+        border: 1px solid #0b1220;
+        font-size: 0.85rem;
+        height: 20px;
+        line-height: 20px;
+        box-shadow: none;
+      }
+
+      .navbar__search-input::placeholder {
+        color: #0f172a;
+        opacity: 0.9;
+        font-weight: 600;
       }
     }
   }
@@ -69,6 +110,37 @@
 [data-theme='dark'] {
   .navbar {
     box-shadow: 0 1px 3px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .navbar__item--search {
+    .DocSearch-Button {
+      background-color: var(--ifm-background-surface-color);
+      border-color: var(--ifm-color-primary-light);
+      color: var(--ifm-color-primary-light);
+      box-shadow: 0 1px 2px rgba(255, 255, 255, 0.08);
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 2px 6px rgba(255, 255, 255, 0.12);
+      }
+    }
+
+    .DocSearch-Button-Placeholder {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .DocSearch-Button-Key {
+      color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.9);
+      font-weight: 800;
+    }
+
+    .navbar__search-input::placeholder {
+      color: #f8fafc;
+      opacity: 0.95;
+    }
   }
   
   .navbar__dropdown .dropdown__menu .dropdown__link--active {
