@@ -218,3 +218,50 @@ html {
 .margin-bottom--lg {
   margin-bottom: 2rem !important;
 }
+
+
+.doc-feedback-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.doc-edit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #111827;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.doc-edit-link svg {
+  width: 0.95em;
+  height: 0.95em;
+}
+
+.doc-edit-link:hover {
+  color: #0f172a;
+  text-decoration: none;
+}
+
+.doc-last-updated {
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+[data-theme='dark'] {
+  .doc-edit-link {
+    color: #e2e8f0;
+  }
+
+  .doc-edit-link:hover {
+    color: #ffffff;
+  }
+
+  .doc-last-updated {
+    color: #94a3b8;
+  }
+}

@@ -45,7 +45,7 @@ const config: Config = {
           editUrl: 'https://github.com/Koreshield/Koreshield-docs/edit/main/',
           breadcrumbs: true,
           showLastUpdateAuthor: false,
-          showLastUpdateTime: false,
+          showLastUpdateTime: true,
         },
         theme: {
           customCss: './src/css/custom.scss',
