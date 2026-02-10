@@ -56,6 +56,14 @@ const config: Config = {
 
   plugins: [
     'docusaurus-plugin-sass',
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        language: ['en'],
+        docsRouteBasePath: '/docs',
+      },
+    ],
   ],
 
   // === THEME CONFIGURATION ===
@@ -103,6 +111,10 @@ const config: Config = {
           to: '/docs/features/rag-defense',
           label: 'Features',
           position: 'left',
+        },
+        {
+          type: 'search',
+          position: 'right',
         },
         {
           to: '/docs/api/',
