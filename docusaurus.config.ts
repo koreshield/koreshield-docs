@@ -202,7 +202,7 @@ const config: Config = {
             },
             {
               label: 'Contributing',
-              href: 'https://github.com/Koreshield',
+              href: 'https://github.com/Koreshield/',
             },
           ],
         },
